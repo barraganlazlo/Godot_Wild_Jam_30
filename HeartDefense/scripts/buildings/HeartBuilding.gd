@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends "res://scripts/buildings/Building.gd"
 
 signal anticipate_heart_beat()
 signal heart_beat()
@@ -19,7 +19,7 @@ enum STATE {
 	BEAT,
 }
 
-onready var beat_rate: int = BEAT_RATE.SLOW setget set_beat_rate
+onready var beat_rate: int = BEAT_RATE.MEDIUM_FAST setget set_beat_rate
 onready var state: int = STATE.IDLE
 onready var tweening_up: bool = true
 
