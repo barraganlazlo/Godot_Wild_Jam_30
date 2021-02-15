@@ -17,7 +17,7 @@ func _process(_delta:float)-> void:
 	#todo : make an array to store inputs from previous frames so we don't miss any
 	#input is check on process called more often than physics 
 	if(Input.is_action_just_pressed("change weapon")):
-		var target_weapon:=(current_weapon+1)%weapons.size()
+		var target_weapon:=(current_weapon+1) % weapons.size()
 		select(target_weapon)
 
 
