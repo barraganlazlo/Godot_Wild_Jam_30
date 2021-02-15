@@ -73,12 +73,12 @@ tile_data = PoolIntArray( 327708, 0, 65554, 327710, 0, 3, 327711, 0, 65551, 3277
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 287.765, 119.994 )
 
-[node name="Building" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 304, 192 )
-
 [node name="Camera2D" type="Camera2D" parent="YSort"]
 position = Vector2( 322.242, 184.932 )
 smoothing_enabled = true
+
+[node name="HeartBuilding" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 320, 176 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
