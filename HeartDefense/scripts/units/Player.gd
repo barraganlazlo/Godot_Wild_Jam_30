@@ -8,8 +8,8 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	destination = get_tree().get_nodes_in_group("heart_building").front().global_position
 
 onready var weapons :=[
-	$Character/Weapons/Hammer,
-	$Character/Weapons/Bow
+	$AnimatedSprite/Weapons/Hammer,
+	$AnimatedSprite/Weapons/Bow
 ]
 var current_weapon:=0
 
