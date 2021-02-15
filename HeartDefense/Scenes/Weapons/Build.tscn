@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Hammer.gd" type="Script" id=1]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_small_hammer.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Build"
+length = 0.2
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 43.4, 80.0, 43.4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:can_build")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 43.4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:can_build")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Hammer" type="Sprite"]
+position = Vector2( 4.24934, 5.59155 )
+rotation = 0.757473
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+can_build = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Build = SubResource( 1 )
+anims/Idle = SubResource( 2 )

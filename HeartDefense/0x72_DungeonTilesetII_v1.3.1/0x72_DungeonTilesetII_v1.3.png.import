@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon_bow3.png-c69261e3cca7ced1e00c5bd60a3c71aa.stex"
+path="res://.import/0x72_DungeonTilesetII_v1.3.png-5ad1b56c21053cecf048d683978e4a6c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow3.png"
-dest_files=[ "res://.import/weapon_bow3.png-c69261e3cca7ced1e00c5bd60a3c71aa.stex" ]
+source_file="res://0x72_DungeonTilesetII_v1.3.1/0x72_DungeonTilesetII_v1.3.png"
+dest_files=[ "res://.import/0x72_DungeonTilesetII_v1.3.png-5ad1b56c21053cecf048d683978e4a6c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
