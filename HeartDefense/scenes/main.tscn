@@ -15,38 +15,10 @@ extents = Vector2( 7.9, 7.9 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 5 )
-shader_param/center = Vector2( 10, 10 )
-shader_param/force = 0.184
-shader_param/size = 0.1476
-shader_param/thickness = 0.02
-
-[sub_resource type="Animation" id=2]
-resource_name = "Pulse"
-step = 0.02
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:material:shader_param/force")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.2, 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ColorRect:material:shader_param/size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.03, 1.5 ]
-}
+shader_param/center = null
+shader_param/force = null
+shader_param/size = null
+shader_param/thickness = null
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 6 )
@@ -121,7 +93,7 @@ format = 1
 script = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="Shockwave"]
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -132,7 +104,6 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
 method_call_mode = 1
-anims/Pulse = SubResource( 2 )
 
 [node name="Button" type="Button" parent="."]
 margin_left = 160.0
