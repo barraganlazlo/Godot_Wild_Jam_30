@@ -10,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
-shader_param/center = Vector2( 0.444, 0.552 )
+shader_param/center = Vector2( 0.5, 0.5 )
 shader_param/force = 0.0
 shader_param/size = 1.5
 shader_param/thickness = 0.02
@@ -68,7 +68,6 @@ tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 327708, 0, 65554, 327710, 0, 3, 327711, 0, 65551, 327712, 0, 1, 393244, 0, 65555, 393246, 0, 65555, 393248, 0, 65555, 458780, 0, 65555, 458782, 0, 65555, 458784, 0, 65555, 524316, 0, 65555, 524318, 0, 65555, 524320, 0, 65555, 589852, 0, 65555, 589854, 0, 65556, 589856, 0, 65555, 655388, 0, 65555, 655392, 0, 65555, 720924, 0, 65555, 720928, 0, 65555, 786460, 0, 65555, 786464, 0, 65556, 851996, 0, 2, 851997, 0, 65551, 851998, 0, 65551, 851999, 0, 65552 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 287.765, 119.994 )

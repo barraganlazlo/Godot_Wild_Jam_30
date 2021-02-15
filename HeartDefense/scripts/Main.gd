@@ -9,7 +9,6 @@ onready var buildings:= $YSort/Buildings
 func _ready() -> void: 
 	heart_building.connect("heart_beat", self, "heart_beat")
 
-
 func heart_beat():
 	$CanvasLayer/AnimationPlayer.current_animation = "Pulse"
 	$CanvasLayer/AnimationPlayer.play("Pulse")
