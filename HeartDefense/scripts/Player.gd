@@ -4,16 +4,13 @@ export var speed = 100
 # keyboard or joystick input to move the player
 var input_direction : Vector2
 
-onready var character_sprite =$Character
-onready var bow =$Character/Weapon/Bow
-onready var hammer =$Character/Weapon/Hammer
+onready var character_sprite : Sprite =$Character
+onready var weapons =[
+	$Character/Weapons/Hammer,
+	$Character/Weapons/Bow
+]
 
-enum Weapon{
-	HAMMER, #BUILD
-	BOW,
-	NUMBER_OF_WEAPONS
-}
-var current_weapon=Weapon.HAMMER
+var current_weapon=0
 
 func _process(_delta:float)-> void:
 	#todo : make an array to store inputs from previous frames so we don't miss any
@@ -29,10 +26,7 @@ func _process(_delta:float)-> void:
 		character_sprite.set_scale(Vector2(-1,1))
 		
 	if(Input.is_action_just_pressed("change weapon")):
-		var target_weapon=(current_weapon+1)%Weapon.NUMBER_OF_WEAPONS
-		print(Weapon.NUMBER_OF_WEAPONS)
-		print(current_weapon)
-		print(target_weapon)
+		var target_weapon=(current_weapon+1)%weapons.size()
 		select(target_weapon)
 
 
@@ -41,35 +35,12 @@ func _physics_process(_delta :float)-> void:
 	#nomalize so the player is not faster when he moves diagonaly
 	var movement = input_direction.normalized() * speed
 	move_and_slide(movement)
-	
-func unselect(weapon)-> void:
-	match weapon:
-		Weapon.HAMMER :
-			print("unselect hammer")
-			hammer.visible=false
-			hammer.is_active=false
-
-		Weapon.BOW :
-			print("unselect bow")
-			bow.visible=false
-			bow.is_active=false
-			
-		_:
-			print("error weapon not supported")
 
 func select(target_weapon)-> void:
 	if target_weapon==current_weapon:
 		return
-	unselect(current_weapon)
+	weapons[target_weapon].visible=true
+	weapons[target_weapon].is_active=true
+	weapons[current_weapon].visible=false
+	weapons[current_weapon].is_active=false
 	current_weapon=target_weapon
-	match target_weapon:
-		Weapon.HAMMER :
-			print("select hammer")
-			hammer.visible=true
-			hammer.is_active=true
-		Weapon.BOW :
-			print("select bow")
-			bow.visible=true
-			bow.is_active=true
-		_:
-			print("error weapon not supported")

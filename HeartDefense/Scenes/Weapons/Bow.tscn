@@ -1,11 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Bow.gd" type="Script" id=1]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow4.png" type="Texture" id=2]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow1.png" type="Texture" id=3]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow2.png" type="Texture" id=4]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow3.png" type="Texture" id=5]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/weapon_bow5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/weapons/bow/weapon_bow4.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/weapons/bow/weapon_bow1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/weapons/bow/weapon_bow2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/weapons/bow/weapon_bow3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/weapons/bow/weapon_bow5.png" type="Texture" id=6]
+
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"

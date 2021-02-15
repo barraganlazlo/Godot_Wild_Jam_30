@@ -1,6 +1,5 @@
 extends Sprite
 
-
 onready var animation_player=$AnimationPlayer
 
 export var can_shoot=true

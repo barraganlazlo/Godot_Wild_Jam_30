@@ -1,13 +1,13 @@
 [gd_resource type="TileSet" load_steps=17 format=2]
 
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_corner_right.png" type="Texture" id=1]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_corner_left.png" type="Texture" id=2]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_mid.png" type="Texture" id=3]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_side_mid_right.png" type="Texture" id=4]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_side_mid_left.png" type="Texture" id=5]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_inner_corner_l_top_left.png" type="Texture" id=6]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_inner_corner_l_top_rigth.png" type="Texture" id=7]
-[ext_resource path="res://0x72_DungeonTilesetII_v1.3.1/frames/wall_top_mid.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/walls/wall_corner_right.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/walls/wall_corner_left.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/walls/wall_mid.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/walls/wall_side_mid_right.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/walls/wall_side_mid_left.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/walls/wall_inner_corner_l_top_left.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/walls/wall_inner_corner_l_top_rigth.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/walls/wall_top_mid.png" type="Texture" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
