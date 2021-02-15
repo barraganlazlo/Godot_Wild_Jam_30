@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/full_wall.png-41bc3abcc4e64eb76013d942e9867ec8.stex"
+path="res://.import/full_wall_spritesheet.png-7ef2e81ead476593eb0fda2cf873c9a1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/buildings/full_wall.png"
-dest_files=[ "res://.import/full_wall.png-41bc3abcc4e64eb76013d942e9867ec8.stex" ]
+source_file="res://Sprites/buildings/full_wall_spritesheet.png"
+dest_files=[ "res://.import/full_wall_spritesheet.png-7ef2e81ead476593eb0fda2cf873c9a1.stex" ]
 
 [params]
 

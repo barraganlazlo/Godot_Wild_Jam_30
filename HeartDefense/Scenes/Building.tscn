@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/HeartBuilding.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 28 )
+extents = Vector2( 32, 24 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Beat"
@@ -81,7 +81,7 @@ script = ExtResource( 3 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
 [node name="Heart" type="Sprite" parent="."]
