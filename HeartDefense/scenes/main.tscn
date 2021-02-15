@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileSets/WallsTileSet.tres" type="TileSet" id=2]
@@ -7,16 +7,19 @@
 [ext_resource path="res://shaders/shockwave.shader" type="Shader" id=5]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=6]
 [ext_resource path="res://TileSets/BuildingsTileSet.tres" type="TileSet" id=7]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://scripts/Shockwave.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
-shader_param/center = Vector2( 0.5, 0.5 )
-shader_param/force = 0.0
-shader_param/size = 1.5
+shader_param/center = Vector2( 10, 10 )
+shader_param/force = 0.184
+shader_param/size = 0.1476
 shader_param/thickness = 0.02
 
 [sub_resource type="Animation" id=2]
 resource_name = "Pulse"
+step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/force")
 tracks/0/interp = 1
@@ -42,7 +45,7 @@ tracks/1/keys = {
 "values": [ 0.03, 1.5 ]
 }
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="YSort" type="YSort" parent="."]
@@ -68,29 +71,46 @@ tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 format = 1
+tile_data = PoolIntArray( 327708, 0, 65554, 327710, 0, 3, 327711, 0, 65551, 327712, 0, 1, 393244, 0, 65555, 393246, 0, 65555, 393248, 0, 65555, 458780, 0, 65555, 458782, 0, 65555, 458784, 0, 65555, 524316, 0, 65555, 524318, 0, 65555, 524320, 0, 65555, 589852, 0, 65555, 589854, 0, 65556, 589856, 0, 65555, 655388, 0, 65555, 655392, 0, 65555, 720924, 0, 65555, 720928, 0, 65555, 786460, 0, 65555, 786464, 0, 65556, 851996, 0, 2, 851997, 0, 65551, 851998, 0, 65551, 851999, 0, 65552 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 287.765, 119.994 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort"]
 position = Vector2( 322.242, 184.932 )
-smoothing_enabled = true
+current = true
+zoom = Vector2( 0.75, 0.75 )
+process_mode = 0
+smoothing_speed = 10.0
+script = ExtResource( 8 )
 
 [node name="HeartBuilding" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 320, 176 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Shockwave" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Shockwave"]
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.445435
-margin_right = -0.445435
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
 method_call_mode = 1
 anims/Pulse = SubResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 160.0
+margin_top = 64.0
+margin_right = 172.0
+margin_bottom = 84.0
+text = "Create Enemy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
