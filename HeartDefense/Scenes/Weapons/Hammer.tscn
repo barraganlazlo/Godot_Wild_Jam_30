@@ -1,10 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Hammer.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Hammer.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/weapons/weapon_small_hammer.png" type="Texture" id=2]
-
-
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "Build"

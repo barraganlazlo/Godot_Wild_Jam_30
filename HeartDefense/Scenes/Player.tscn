@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/mobs/elf_m/elf_m_idle_anim_f0.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Weapons/Bow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Weapons/Build.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Weapons/Hammer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Weapons.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]

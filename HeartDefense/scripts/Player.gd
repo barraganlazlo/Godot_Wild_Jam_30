@@ -5,12 +5,12 @@ export var speed = 100
 var input_direction : Vector2
 
 onready var character_sprite : Sprite =$Character
-onready var weapons =[
+onready var weapons :=[
 	$Character/Weapons/Hammer,
 	$Character/Weapons/Bow
 ]
 
-var current_weapon=0
+var current_weapon:=0
 
 func _process(_delta:float)-> void:
 	#todo : make an array to store inputs from previous frames so we don't miss any
@@ -18,15 +18,15 @@ func _process(_delta:float)-> void:
 	input_direction.x= Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_direction.y= Input.get_action_strength("down") - Input.get_action_strength("up")
 	
-	var local_mouse_pos=get_local_mouse_position()
+	var aim_direction:=get_local_mouse_position()
 
-	if local_mouse_pos.x>0 :
+	if aim_direction.x>0 :
 		character_sprite.set_scale(Vector2(1,1))
-	elif local_mouse_pos.x<0 :
+	elif aim_direction.x<0 :
 		character_sprite.set_scale(Vector2(-1,1))
 		
 	if(Input.is_action_just_pressed("change weapon")):
-		var target_weapon=(current_weapon+1)%weapons.size()
+		var target_weapon:=(current_weapon+1)%weapons.size()
 		select(target_weapon)
 
 
