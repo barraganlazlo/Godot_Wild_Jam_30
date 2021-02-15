@@ -8,6 +8,8 @@ onready var player:= $YSort/Player
 onready var buildings:= $YSort/Buildings
 onready var camera:= $YSort/Camera2D
 export var center_pos: Vector2 = Vector2(0,0)
+onready var preview_buildings:= $YSort/Preview/PreviewBuildings
+onready var preview_collision:= $YSort/Preview/PreviewCollision
 
 func _ready() -> void: 
 	rng.randomize()
