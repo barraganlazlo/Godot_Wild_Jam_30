@@ -6,6 +6,9 @@ onready var attack_damage: int = 1
 # Ignore this variable \/
 onready var list_of_obj_types: Array = []
 
+func take_damage(value: int, _knockback: Vector2)-> void:
+	set_hp(hp-value)
+
 func set_hp(value: int):
 	print("new hp = %s" % [value])
 	hp = value
@@ -13,14 +16,6 @@ func set_hp(value: int):
 		hp_depleted()
 	else:
 		hp_reduced()
-
-func _ready():
-	add_to_group("buildings")
-
-func init(new_hp: int = 10, new_damage: int = 1) -> void:
-	set_hp(new_hp)
-	attack_damage = new_damage
-
 
 func hp_depleted():
 	var inst = load("res://Scenes/Particles/Explode.tscn")
@@ -31,13 +26,22 @@ func hp_depleted():
 func hp_reduced():
 	var timer
 	if has_node("FlashTimer"):
-		timer = get_node("Flashtimer")
+		timer = get_node("FlashTimer")
 	else: 
 		var inst = load("res://shaders/FlashTimer.tscn")
 		timer = inst.instance()
 		add_child(timer)
 		timer.name = "FlashTimer"
 	timer.init(0.25)
+
+
+func _ready():
+	add_to_group("buildings")
+
+func init(new_hp: int = 10, new_damage: int = 1) -> void:
+	set_hp(new_hp)
+	attack_damage = new_damage
+
 
 func set_shader(value):
 	var inst = null

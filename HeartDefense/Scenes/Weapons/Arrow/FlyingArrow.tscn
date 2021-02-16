@@ -27,7 +27,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -6, -0.5 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="DeleteTimer" type="Timer" parent="."]

@@ -12,7 +12,18 @@ onready var direction: Vector2 = Vector2.ZERO
 onready var move_spd: float = 100.0 setget set_move_spd
 onready var animation_spd: float = 2.25 setget set_animation_spd
 
+# Ignore this var \/
+onready var list_of_obj_types: Array = []
+
 var hp: int = 10 setget set_hp
+
+func take_damage(value: int, knockback: Vector2)-> void:
+	set_hp(hp-value)
+	print(knockback)
+	print(velocity)
+	velocity += (knockback * 100)
+	print(velocity)
+	
 
 func set_hp(value: int):
 	hp = value
@@ -25,12 +36,13 @@ func hp_depleted():
 	var inst = load("res://Scenes/Particles/Explode.tscn")
 	var particle = inst.instance()
 	get_tree().get_root().add_child(particle)
+	particle.global_position = global_position
 	queue_free()
 
 func hp_reduced():
 	var timer
 	if has_node("FlashTimer"):
-		timer = get_node("Flashtimer")
+		timer = get_node("FlashTimer")
 	else: 
 		var inst = load("res://shaders/FlashTimer.tscn")
 		timer = inst.instance()
@@ -49,6 +61,7 @@ func set_animation_spd(value: float)-> void:
 func set_animation(value: String):
 	if value == "Idle" or value == "Run":
 		animSprite.animation = value
+
 
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25):
 	type = sprite_string
@@ -81,7 +94,6 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	set_animation("Idle")
 	animSprite.playing = true
 
-
 func _physics_process(delta: float) -> void:
 	var direction: Vector2 = global_position.direction_to(destination)
 	velocity = velocity.move_toward(direction * move_spd ,1000.0 * delta)
@@ -93,8 +105,22 @@ func set_flip(looking_direction: Vector2):
 		animSprite.set_scale(Vector2(-1,1))
 	elif looking_direction.x > 0:
 		animSprite.set_scale(Vector2(1,1))
-		
-func take_damage(amount:int)->void:
-	hp-=amount
-	if(hp<1):
-		queue_free()
+
+
+func set_shader(value):
+	var inst = null
+	if value != null:
+		inst = load(value)
+	list_of_obj_types = []
+	deep_search(self, AnimatedSprite)
+	print(list_of_obj_types)
+	for i in list_of_obj_types:
+		i.material = inst
+
+func deep_search(object, node_type):
+	if object.get_child_count() == 0:
+		if object is node_type:
+			list_of_obj_types.append(object)
+	else:
+		for i in object.get_children():
+			deep_search(i, node_type)

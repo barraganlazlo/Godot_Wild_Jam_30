@@ -11,7 +11,9 @@ func _physics_process(delta: float) -> void:
 	set_flip(direction)
 
 func _on_HurtBox_body_entered(body) -> void:
-	body.hp -= damage
+	var knockback_force = 10.0
+	var knockback = global_position.direction_to(body.global_position) * knockback_force
+	body.take_damage(damage, knockback)
 	hp_depleted()
 
 func _ready():
