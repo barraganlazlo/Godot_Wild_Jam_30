@@ -16,8 +16,8 @@ extents = Vector2( 7.9, 7.9 )
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 5 )
 shader_param/center = null
-shader_param/force = null
-shader_param/size = null
+shader_param/force = 0.0
+shader_param/size = 1.5
 shader_param/thickness = null
 
 [sub_resource type="Animation" id=3]
