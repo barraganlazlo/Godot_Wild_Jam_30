@@ -1,7 +1,7 @@
 extends Sprite
 
 onready var animation_player:=$AnimationPlayer
-onready var main:= get_tree().get_root().get_node("Main")
+onready var main:= get_node("/root/Main")
 
 export var is_active:=true
 export var can_build:=true

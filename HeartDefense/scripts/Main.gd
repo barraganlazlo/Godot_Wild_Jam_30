@@ -3,6 +3,7 @@ extends Node2D
 onready var rng = RandomNumberGenerator.new()
 onready var room_pixel_size: Vector2 = Vector2(640.0,360.0)
 
+onready var ysort:= $YSort
 onready var heart_building:= $YSort/HeartBuilding
 onready var player:= $YSort/Player
 onready var buildings:= $YSort/Buildings

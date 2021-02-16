@@ -39,6 +39,7 @@ script = ExtResource( 5 )
 visible = false
 position = Vector2( 9.09921, 0.45197 )
 scale = Vector2( 1, 1 )
+is_active = false
 
 [node name="Hammer" parent="AnimatedSprite/Weapons" instance=ExtResource( 4 )]
 position = Vector2( 10.0992, -2.54803 )

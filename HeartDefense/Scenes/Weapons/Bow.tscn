@@ -36,7 +36,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "Shoot"
-length = 0.16
+length = 0.12
 step = 0.04
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
@@ -57,16 +57,16 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.16 ),
+"times": PoolRealArray( 0, 0.12 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false, false ]
+"values": [ false, true ]
 }
 
 [node name="Bow" type="Sprite"]
 position = Vector2( 4.83137, 7.99196 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
 can_shoot = false
 

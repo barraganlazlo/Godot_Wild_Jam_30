@@ -10,3 +10,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_HurtBox_body_entered(body) -> void:
 	body.hp -= 1
+
+func _ready():
+	add_to_group("Enemies")
