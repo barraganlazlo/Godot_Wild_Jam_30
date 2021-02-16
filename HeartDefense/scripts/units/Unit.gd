@@ -12,7 +12,32 @@ onready var direction: Vector2 = Vector2.ZERO
 onready var move_spd: float = 100.0 setget set_move_spd
 onready var animation_spd: float = 2.25 setget set_animation_spd
 
-var hp: int = 10
+var hp: int = 10 setget set_hp
+
+func set_hp(value: int):
+	hp = value
+	if hp <= 0:
+		hp_depleted()
+	else:
+		hp_reduced()
+
+func hp_depleted():
+	var inst = load("res://Scenes/Particles/Explode.tscn")
+	var particle = inst.instance()
+	get_tree().get_root().add_child(particle)
+	queue_free()
+
+func hp_reduced():
+	var timer
+	if has_node("FlashTimer"):
+		timer = get_node("Flashtimer")
+	else: 
+		var inst = load("res://shaders/FlashTimer.tscn")
+		timer = inst.instance()
+		add_child(timer)
+		timer.name = "FlashTimer"
+	timer.init(0.5)
+
 
 func set_move_spd(value: float)-> void:
 	move_spd = value
@@ -70,7 +95,6 @@ func set_flip(looking_direction: Vector2):
 		animSprite.set_scale(Vector2(1,1))
 		
 func take_damage(amount:int)->void:
-	print(amount)
 	hp-=amount
 	if(hp<1):
 		queue_free()
