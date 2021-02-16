@@ -2,5 +2,6 @@
 
 [ext_resource path="res://Sprites/projectiles/proj_arrow3.png" type="Texture" id=1]
 
-[node name="BrokenArrowBack" type="Sprite"]
+[node name="PlantedArrow" type="Sprite"]
 texture = ExtResource( 1 )
+offset = Vector2( -3, 0.5 )

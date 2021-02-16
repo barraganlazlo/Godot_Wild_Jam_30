@@ -29,7 +29,7 @@ func heart_beat():
 		sprite_string = "ogre"
 	print(sprite_string)
 	var rand_spd: float = rng.randf_range(1.0, 2.25)
-	var rand_move_spd: float = rand_spd * 50
+	var rand_move_spd: float = rand_spd * 25
 	var rand_anim_spd: float = rand_spd
 	create_enemy(Vector2(96, 96), sprite_string, rand_move_spd, rand_anim_spd)
 	

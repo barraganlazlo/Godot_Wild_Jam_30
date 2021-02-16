@@ -12,7 +12,7 @@ func _process(_delta:float)-> void:
 	if !is_active :
 		return
 
-	if can_shoot && Input.is_action_just_pressed ("shoot") :
+	if can_shoot && Input.is_action_pressed ("shoot") :
 		animation_player.play("Shoot")
 		var arrow=ARROW.instance()
 		main.ysort.add_child(arrow)
@@ -20,4 +20,11 @@ func _process(_delta:float)-> void:
 		var direction=(get_global_mouse_position()- global_position).normalized()
 		print("shoot : ",direction)
 		arrow.launch(direction*arrow_speed)
-		
+
+func activate():
+	is_active=true
+	visible=true
+
+func desactivate():
+	is_active=false
+	visible=false

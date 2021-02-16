@@ -60,4 +60,13 @@ func _process(_delta:float)-> void:
 	else:
 		#upate the color of the preview
 		main.preview_buildings.modulate=OCCUPIED_COLOR
-	
+
+func activate():
+	is_active=true
+	visible=true
+	main.preview_buildings.visible=true
+
+func desactivate():
+	is_active=false
+	visible=false
+	main.preview_buildings.visible=false

@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Sprites/mobs/elf_m/elf_m_idle_anim_f1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/units/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Weapons/Bow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Weapons/Hammer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/weapons/Weapons.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 4 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 10.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -26,20 +28,18 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 12 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 
 [node name="Weapons" type="Node2D" parent="AnimatedSprite"]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 7 )
 script = ExtResource( 5 )
 
 [node name="Bow" parent="AnimatedSprite/Weapons" instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 9.09921, 0.45197 )
-scale = Vector2( 1, 1 )
 is_active = false
 
 [node name="Hammer" parent="AnimatedSprite/Weapons" instance=ExtResource( 4 )]
-position = Vector2( 10.0992, -2.54803 )
+position = Vector2( 7, -4.5 )

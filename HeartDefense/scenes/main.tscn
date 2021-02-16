@@ -86,7 +86,6 @@ position = Vector2( 287.765, 119.994 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort"]
 position = Vector2( 322.242, 184.932 )
-current = true
 zoom = Vector2( 0.75, 0.75 )
 process_mode = 0
 smoothing_speed = 10.0

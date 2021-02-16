@@ -12,7 +12,7 @@ onready var direction: Vector2 = Vector2.ZERO
 onready var move_spd: float = 100.0 setget set_move_spd
 onready var animation_spd: float = 2.25 setget set_animation_spd
 
-onready var hp: int = 10
+var hp: int = 10
 
 func set_move_spd(value: float)-> void:
 	move_spd = value
@@ -68,3 +68,9 @@ func set_flip(looking_direction: Vector2):
 		animSprite.set_scale(Vector2(-1,1))
 	elif looking_direction.x > 0:
 		animSprite.set_scale(Vector2(1,1))
+		
+func take_damage(amount:int)->void:
+	print(amount)
+	hp-=amount
+	if(hp<1):
+		queue_free()
