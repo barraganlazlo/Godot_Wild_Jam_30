@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/gui/LevelEnd.gd" type="Script" id=1]
+[ext_resource path="res://Gui/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Sprites/gui/NineRect3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/gui/NineRect1.png" type="Texture" id=4]
+
+[node name="LevelResults" type="NinePatchRect"]
+anchor_left = 0.387
+anchor_top = 0.139
+anchor_right = 0.669
+anchor_bottom = 0.583
+margin_left = 0.319977
+margin_top = -0.0400047
+margin_right = -0.160034
+margin_bottom = 0.119995
+theme = ExtResource( 2 )
+texture = ExtResource( 4 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 175.0
+margin_bottom = 155.0
+color = Color( 0.184314, 0.105882, 0.168627, 0.517647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+margin_right = 170.0
+margin_bottom = 14.0
+
+[node name="Buffer1" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_bottom = 14.0
+
+[node name="LevelNum" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 45.0
+margin_bottom = 14.0
+text = "Level # "
+
+[node name="Buffer2" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 142.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "-"
+align = 1
+
+[node name="Result" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 146.0
+margin_right = 166.0
+margin_bottom = 14.0
+text = "Lost"
+
+[node name="Buffer3" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/VBoxContainer"]
+margin_top = 18.0
+margin_right = 170.0
+margin_bottom = 129.0
+size_flags_vertical = 3
+color = Color( 0.113725, 0.0705882, 0.0901961, 0.45098 )
+
+[node name="Scroll" type="ScrollContainer" parent="ColorRect/VBoxContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="ColorRect/VBoxContainer/ColorRect/Scroll"]
+margin_right = 170.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NineRect" type="NinePatchRect" parent="ColorRect/VBoxContainer"]
+margin_top = 133.0
+margin_right = 170.0
+margin_bottom = 149.0
+rect_min_size = Vector2( 16, 16 )
+texture = ExtResource( 3 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Button" type="TextureButton" parent="ColorRect/VBoxContainer/NineRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/NineRect/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Retry"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="pressed" from="ColorRect/VBoxContainer/NineRect/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

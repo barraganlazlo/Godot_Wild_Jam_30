@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-onready var hp: int = 10 setget set_hp
+onready var hp: int = 1 setget set_hp
 onready var attack_damage: int = 1
 
 # Ignore this variable \/
@@ -8,6 +8,7 @@ onready var list_of_obj_types: Array = []
 
 func take_damage(value: int, _knockback: Vector2)-> void:
 	set_hp(hp-value)
+
 
 func set_hp(value: int):
 	print("new hp = %s" % [value])
@@ -36,7 +37,8 @@ func hp_reduced():
 
 
 func _ready():
-	add_to_group("buildings")
+	Global.level_stats[Global.STATS.BUILDINGS_BUILT] += 1
+	add_to_group("Buildings")
 
 func init(new_hp: int = 10, new_damage: int = 1) -> void:
 	set_hp(new_hp)

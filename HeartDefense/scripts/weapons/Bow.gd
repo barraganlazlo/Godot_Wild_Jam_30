@@ -1,7 +1,7 @@
 extends Sprite
 
 onready var animation_player:=$AnimationPlayer
-onready var main:=get_node("/root/Main")
+onready var main = get_tree().get_nodes_in_group("main").front()
 export var can_shoot=true
 export var is_active=true
 
@@ -16,6 +16,7 @@ func _process(_delta:float)-> void:
 		animation_player.play("Shoot")
 		var arrow=ARROW.instance()
 		main.ysort.add_child(arrow)
+		Global.level_stats[Global.STATS.ARROWS_SHOT] += 1
 		arrow.global_position=global_position
 		var direction=(get_global_mouse_position()- global_position).normalized()
 		print("shoot : ",direction)

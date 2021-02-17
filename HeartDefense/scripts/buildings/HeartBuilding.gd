@@ -22,12 +22,22 @@ enum STATE {
 onready var beat_rate: int = BEAT_RATE.MEDIUM_FAST setget set_beat_rate
 onready var state: int = STATE.IDLE
 onready var tweening_up: bool = true
-
+onready var main = get_tree().get_nodes_in_group("main").front()
 
 func _ready() -> void:
 	tween_heart()
 	set_beat_rate(beat_rate)
 
+func hp_depleted():
+	if main.game_over:
+		return
+	get_tree().get_nodes_in_group("main").front().game_over()
+	hp = 10000
+	collision_layer = 0
+	set_animation()
+	main.game_over = true
+	$Tween.stop_all()
+	
 
 # rate = # of frames per beat
 # This changes the idle animation length and thus changes how often a heart beat 
@@ -50,10 +60,13 @@ func anticipate_heart_beat() -> void:
 # Called from animationPlayer
 # emits a signal to fire the players and buildings weapons
 func heart_beat() -> void:
+	Global.level_stats[Global.STATS.HEART_BEATS] += 1
 	emit_signal("heart_beat")
 
 # Used by the animation player to switch between Idle and Beat
 func set_animation(animation_name: String = "Idle") -> void:
+	if main.game_over:
+		return
 	if animation_name == "Idle":
 		state = STATE.IDLE
 	else:
@@ -63,6 +76,9 @@ func set_animation(animation_name: String = "Idle") -> void:
 
 func tween_heart()-> void:
 	var tween: Tween = $Tween
+	if main.game_over:
+		tween.stop_all()
+		return
 	var heart: Sprite = $Heart
 	var t_trans: int = Tween.TRANS_BACK
 	var t_ease: int = Tween.EASE_IN_OUT

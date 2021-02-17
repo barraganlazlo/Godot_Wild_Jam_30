@@ -19,6 +19,10 @@ config/name="HeartDefense"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+
 [display]
 
 window/size/width=640

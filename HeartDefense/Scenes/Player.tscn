@@ -16,9 +16,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 12 )
 collision_layer = 2
 collision_mask = 9
@@ -32,7 +30,9 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 
-[node name="Weapons" type="Node2D" parent="AnimatedSprite"]
+[node name="Weapons" type="Node2D" parent="AnimatedSprite" groups=[
+"Weapons",
+]]
 position = Vector2( 0, 7 )
 script = ExtResource( 5 )
 

@@ -1,6 +1,7 @@
 extends "res://scripts/units/Unit.gd"
 
 func _ready():
+	add_to_group("Player")
 	init("elf_m", 120.0, 2.0)
 
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25):

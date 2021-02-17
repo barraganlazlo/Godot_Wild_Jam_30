@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Particles/particle_explode.png" type="Texture" id=1]
-[ext_resource path="res://scripts/particles/OneShot.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.0148148, 1 )
-colors = PoolColorArray( 0.953125, 0.7261, 0.122864, 1, 1, 0.0234375, 0, 1 )
+colors = PoolColorArray( 0.953125, 0.122864, 0.366104, 1, 0.31511, 0.151085, 0.943359, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -33,6 +32,8 @@ curve = SubResource( 7 )
 
 [sub_resource type="ParticlesMaterial" id=9]
 lifetime_randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 10.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -52,9 +53,7 @@ hue_variation_curve = SubResource( 4 )
 [node name="Explode" type="Particles2D"]
 amount = 40
 lifetime = 0.4
-explosiveness = 0.9
 randomness = 0.24
 local_coords = false
 process_material = SubResource( 9 )
 texture = ExtResource( 1 )
-script = ExtResource( 2 )

@@ -48,7 +48,9 @@ tracks/1/keys = {
 "values": [ 0.03, 1.5 ]
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=[
+"main",
+]]
 script = ExtResource( 6 )
 
 [node name="YSort" type="YSort" parent="."]
@@ -82,7 +84,9 @@ format = 1
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 287.765, 119.994 )
 
-[node name="Camera2D" type="Camera2D" parent="YSort"]
+[node name="Camera2D" type="Camera2D" parent="YSort" groups=[
+"camera",
+]]
 position = Vector2( 322.242, 184.932 )
 current = true
 zoom = Vector2( 0.75, 0.75 )
@@ -90,9 +94,11 @@ process_mode = 0
 smoothing_speed = 10.0
 script = ExtResource( 8 )
 
+[node name="Timer" type="Timer" parent="YSort/Camera2D"]
+
 [node name="HeartBuilding" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 320, 176 )
-collision_layer = 2147483658
+collision_layer = 2147483656
 
 [node name="Preview" type="Node2D" parent="YSort"]
 
@@ -139,4 +145,9 @@ text = "Create Enemy"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0
+[connection signal="timeout" from="YSort/Camera2D/Timer" to="YSort/Camera2D" method="_on_Timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

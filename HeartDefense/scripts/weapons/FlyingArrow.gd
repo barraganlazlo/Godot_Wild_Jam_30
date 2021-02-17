@@ -6,7 +6,7 @@ onready var delete_timer=$DeleteTimer
 
 var velocity := Vector2(0,0)
 var gravity:=0.005
-var damage: int=4
+var damage: int = 1
 func _ready()->void:
 	set_physics_process(false)
 
@@ -19,7 +19,8 @@ func _physics_process(delta:float)->void:
 			planted_arrow.rotation=rotation
 			collision.collider.add_child(planted_arrow)
 			planted_arrow.global_position=global_position
-			var knockback = global_position.direction_to(collision.collider.global_position) * 100
+			var knockback_force = 300
+			var knockback = global_position.direction_to(collision.collider.global_position) * knockback_force
 			collision.collider.take_damage(damage, knockback)
 			queue_free()
 		else:

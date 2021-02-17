@@ -21,7 +21,7 @@ func take_damage(value: int, knockback: Vector2)-> void:
 	set_hp(hp-value)
 	print(knockback)
 	print(velocity)
-	velocity += (knockback * 100)
+	velocity += knockback
 	print(velocity)
 	
 
@@ -33,10 +33,11 @@ func set_hp(value: int):
 		hp_reduced()
 
 func hp_depleted():
-	var inst = load("res://Scenes/Particles/Explode.tscn")
+	var inst = load("res://Scenes/Particles/Bomb.tscn")
 	var particle = inst.instance()
 	get_tree().get_root().add_child(particle)
 	particle.global_position = global_position
+	Global.level_stats[Global.STATS.MONSTERS_KILLED] += 1
 	queue_free()
 
 func hp_reduced():
