@@ -43,8 +43,4 @@ func select(target_weapon)-> void:
 		return
 	weapons[target_weapon].activate()
 	weapons[current_weapon].desactivate()
-#	weapons[target_weapon].visible=true
-#	weapons[target_weapon].is_active=true
-#	weapons[current_weapon].visible=false
-#	weapons[current_weapon].is_active=false
 	current_weapon=target_weapon
