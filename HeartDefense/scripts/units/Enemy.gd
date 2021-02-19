@@ -10,12 +10,6 @@ func _physics_process(delta: float) -> void:
 	._physics_process(delta)
 	set_flip(direction)
 
-func _on_HurtBox_body_entered(body) -> void:
-	var knockback_force = 10.0
-	var knockback = global_position.direction_to(body.global_position) * knockback_force
-	body.take_damage(damage, knockback)
-	hp_depleted()
-
 func _ready():
 	add_to_group("Enemies")
 
@@ -26,3 +20,10 @@ func find_nearest()-> Vector2:
 		if global_position.distance_to(i.global_position) < global_position.distance_to(nearest_pos):
 			nearest_pos = i.global_position
 	return nearest_pos
+
+
+func _on_HurtBox_body_entered(body) -> void:
+	var knockback_force = 10.0
+	var knockback = global_position.direction_to(body.global_position) * knockback_force
+	body.take_damage(damage, knockback)
+	hp_depleted()

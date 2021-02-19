@@ -25,10 +25,11 @@ onready var tweening_up: bool = true
 onready var main = get_tree().get_nodes_in_group("main").front()
 
 func _ready() -> void:
+	hp=10000000
 	tween_heart()
 	set_beat_rate(beat_rate)
 
-func hp_depleted():
+func hp_depleted()->void:
 	if main.game_over:
 		return
 	get_tree().get_nodes_in_group("main").front().game_over()

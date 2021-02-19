@@ -6,12 +6,9 @@ onready var room_pixel_size: Vector2 = Vector2(640.0,360.0)
 onready var ysort:= $YSort
 onready var heart_building:= $YSort/HeartBuilding
 onready var player:= $YSort/Player
-onready var buildings:= $YSort/Buildings
 onready var camera:= $YSort/Camera2D
 export var center_pos: Vector2 = Vector2(0,0)
 onready var game_over: bool = false
-onready var preview_buildings:= $YSort/Preview/PreviewBuildings
-onready var preview_collision:= $YSort/Preview/PreviewCollision
 
 func _ready() -> void: 
 	rng.randomize()

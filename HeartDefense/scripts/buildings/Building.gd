@@ -6,7 +6,7 @@ onready var attack_damage: int = 1
 # Ignore this variable \/
 onready var list_of_obj_types: Array = []
 
-func take_damage(value: int, _knockback: Vector2)-> void:
+func take_damage(value: int, _position: Vector2)-> void:
 	set_hp(hp-value)
 
 
@@ -22,7 +22,6 @@ func hp_depleted():
 	var inst = load("res://Scenes/Particles/Explode.tscn")
 	var particle = inst.instance()
 	get_tree().get_root().add_child(particle)
-	queue_free()
 
 func hp_reduced():
 	var timer
