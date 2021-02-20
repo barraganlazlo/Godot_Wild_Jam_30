@@ -19,10 +19,8 @@ var hp: int = 10 setget set_hp
 
 func take_damage(value: int, knockback: Vector2)-> void:
 	set_hp(hp-value)
-	print(knockback)
-	print(velocity)
 	velocity += knockback
-	print(velocity)
+
 	
 
 func set_hp(value: int):
@@ -35,7 +33,7 @@ func set_hp(value: int):
 func hp_depleted():
 	var inst = load("res://Scenes/Particles/Bomb.tscn")
 	var particle = inst.instance()
-	get_tree().get_root().add_child(particle)
+	get_tree().get_nodes_in_group("ysort").front().add_child(particle)
 	particle.global_position = global_position
 	Global.level_stats[Global.STATS.MONSTERS_KILLED] += 1
 	queue_free()
@@ -64,10 +62,11 @@ func set_animation(value: String):
 		animSprite.animation = value
 
 
-func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25):
+func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25, new_hp: int = 10):
 	type = sprite_string
 	set_move_spd(spd)
 	set_animation_spd(anim_spd)
+	set_hp(new_hp)
 	
 	var res: String = ("res://Sprites/mobs/" + type + "//" + type) #ogre_idle_anim_f0" + ".png"
 	var frames = animSprite.frames
@@ -114,7 +113,6 @@ func set_shader(value):
 		inst = load(value)
 	list_of_obj_types = []
 	deep_search(self, AnimatedSprite)
-	print(list_of_obj_types)
 	for i in list_of_obj_types:
 		i.material = inst
 

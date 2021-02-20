@@ -44,9 +44,9 @@ color = Color( 0.992157, 0.592157, 0.2, 1 )
 
 [node name="Bomb" type="Particles2D"]
 amount = 40
-lifetime = 0.5
+lifetime = 0.75
 explosiveness = 0.85
-randomness = 0.18
+randomness = 0.45
 process_material = SubResource( 7 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

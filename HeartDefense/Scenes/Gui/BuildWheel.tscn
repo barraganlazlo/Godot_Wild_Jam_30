@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Gui/BuildWheel.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Gui/BuildWheelPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Gui/Tween.gd" type="Script" id=9]
+
+[node name="BuildWheelNode" type="Position2D"]
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+script = ExtResource( 9 )
+
+[node name="BuildWheelPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 8 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="finished" from="BuildWheelPlayer" to="BuildWheelPlayer" method="_on_BuildWheelPlayer_finished"]

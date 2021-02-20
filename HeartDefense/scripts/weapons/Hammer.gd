@@ -2,12 +2,15 @@ extends Sprite
 
 onready var animation_player:=$AnimationPlayer
 onready var main:= get_node("/root/Main")
+onready var ysort = get_tree().get_nodes_in_group("ysort").front()
 onready var buildings:= get_node("/root/Main/YSort/Buildings")
 onready var preview:=  get_node("/root/Main/YSort/Preview")
 onready var built_walls:=  get_node("/root/Main/YSort/BuiltWalls")
 onready var preview_collision:=  get_node("/root/Main/YSort/Preview/PreviewCollision")
+
 export var is_active:=true
 export var can_build:=true
+onready var immunity: bool = true
 var build_position_is_empty:=true
 
 const FREE_COLOR := Color(0,0,1,0.75)
@@ -18,7 +21,7 @@ var last_target_map_pos:=Vector2(-1,-1)
 
 
 #BUILDINGS
-enum {WALL, SPEAR_TOWER,NUMBER_BUILDING_TYPES}
+enum {WALL, SPEAR, NUMBER_BUILDING_TYPES}
 
 var current_building:=WALL
 
@@ -28,12 +31,31 @@ onready var buildings_preview:=[
 ]
 var buildings_scene:=[
 	null,
-	preload("res://Scenes/Buildings/SpearTower.tscn")
+	preload("res://Scenes/Buildings/SpearBuilding.tscn")
 ]
 #END BUILDINGS
 
+
+func _ready():
+	set_process(false)
+
+
+func receive_type(type):
+	print(type)
+	if type == -1:
+		main.player.select(1)
+		main.player.build_wheel_allowed = true
+	else:
+		current_building = type
+	
+	immunity = true
+	$Timer.wait_time = 0.05
+	$Timer.start()
+	set_process(true)
+
+
 func _process(_delta:float)-> void:
-	if !is_active :
+	if !is_active:
 		return
 		
 	#ensure that target pos is in range of the player
@@ -69,7 +91,7 @@ func _process(_delta:float)-> void:
 		#upate the color of the preview
 		preview.modulate=FREE_COLOR
 		#Build if it's posible
-		if (can_build && Input.is_action_pressed("build")) :
+		if (can_build && Input.is_action_pressed("mouse_left")) :
 			build(target_map_pos)
 	else:
 		#upate the color of the preview
@@ -78,6 +100,17 @@ func _process(_delta:float)-> void:
 			destruct(target_map_pos)
 			animation_player.play("Build")
 			built_walls.add_tile(target_map_pos,-1)
+		
+	
+	if Input.is_action_just_released("mouse_right"):
+		if immunity:
+			return
+		main.player.select(1)
+		main.player.build_wheel_allowed = false
+		main.player.show_building_range(0)
+		set_process(false)
+	else:
+		main.player.show_building_range(BUILD_RANGE)
 
 func update_preview(target_map_pos:Vector2)->void :
 	#update preview collision position
@@ -88,7 +121,7 @@ func update_preview(target_map_pos:Vector2)->void :
 	match current_building:
 		WALL:
 			buildings_preview[WALL].set_cellv(target_map_pos,0)
-		_:
+		SPEAR:
 			buildings_preview[current_building].global_position=world_preview_pos
 	
 func build(target_map_pos:Vector2)->void :
@@ -96,9 +129,9 @@ func build(target_map_pos:Vector2)->void :
 	match current_building:
 		WALL:
 			built_walls.add_tile(target_map_pos,0)
-		_:
+		SPEAR:
 			var building=buildings_scene[current_building].instance()
-			buildings.add_child(building)
+			ysort.add_child(building)
 			building.global_position=Vector2(8,8)+built_walls.map_to_world(target_map_pos)
 
 func destruct(target_map_pos:Vector2)->void :
@@ -124,3 +157,7 @@ func desactivate()->void:
 	is_active=false
 	visible=false
 	preview.visible=false
+
+
+func _on_Timer_timeout() -> void:
+	immunity = false

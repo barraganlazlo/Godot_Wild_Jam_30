@@ -7,6 +7,8 @@ onready var shake: bool = false
 onready var shake_intensity: float = 1.0
 
 func _process(delta: float) -> void:
+	if link == null:
+		return
 	var link_global_pos: Vector2 = link.global_position
 	var dist: Vector2 = Vector2.ZERO
 	if smooth:

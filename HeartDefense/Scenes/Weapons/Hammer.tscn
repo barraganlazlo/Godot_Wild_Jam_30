@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/weapons/Hammer.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/weapons/weapon_small_hammer.png" type="Texture" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Build"
 length = 0.2
@@ -72,3 +71,6 @@ can_build = false
 autoplay = "Idle"
 anims/Build = SubResource( 1 )
 anims/Idle = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

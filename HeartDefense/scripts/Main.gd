@@ -11,10 +11,41 @@ export var center_pos: Vector2 = Vector2(0,0)
 onready var game_over: bool = false
 
 func _ready() -> void: 
+	$WaveMaker.bottom_right = Vector2(room_pixel_size.x-64, room_pixel_size.y-64)
+	$WaveMaker.max_spawn_rect_size = $WaveMaker.top_left - $WaveMaker.bottom_right
 	rng.randomize()
+	heart_building.connect("anticipate_heart_beat", self, "anticipate_heart_beat")
 	heart_building.connect("heart_beat", self, "heart_beat")
+	#create_enemy(Vector2(128, 128), "muddy", 0.0, 1.0, 10)
+
+
+func _process(_delta: float) -> void:
+	var heart = heart_building.get_node("Heart")
+	var transformed_position = heart.get_global_transform_with_canvas().origin / get_viewport_rect().size
+	var aspect_ratio = get_viewport_rect().size.aspect()
+	transformed_position.x = (transformed_position.x - 0.5) * aspect_ratio + 0.5
+	var center_pos = Vector2(transformed_position.x,1.0-transformed_position.y)
+	$Shockwave/ColorRect.material.set_shader_param("center", center_pos)
+
+func anticipate_heart_beat():
+	var buildings = get_tree().get_nodes_in_group("Building")
+	if buildings.has(heart_building):
+		buildings.erase(heart_building)
+	
+	for i in buildings:
+		i.anticipate_heart_beat()
 
 func heart_beat():
+	var buildings = get_tree().get_nodes_in_group("Building")
+	if buildings.has(heart_building):
+		buildings.erase(heart_building)
+	
+	for i in buildings:
+		i.heart_beat()
+	
+	$Shockwave/AnimationPlayer.current_animation = "Pulse"
+	$Shockwave/AnimationPlayer.play("Pulse")
+	return
 	var i = randi() % 5
 	var sprite_string: String = "orc_shaman"
 	if i == 0:
@@ -25,28 +56,32 @@ func heart_beat():
 		sprite_string = "muddy"
 	elif i == 3:
 		sprite_string = "ogre"
-	print(sprite_string)
 	var rand_spd: float = rng.randf_range(1.0, 2.25)
 	var rand_move_spd: float = rand_spd * 25
 	var rand_anim_spd: float = rand_spd
-	create_enemy(Vector2(96, 96), sprite_string, rand_move_spd, rand_anim_spd)
-	
-	
-	var transformed_position = heart_building.get_global_transform_with_canvas().origin / get_viewport_rect().size
-	var aspect_ratio = get_viewport_rect().size.aspect()
-	transformed_position.x = (transformed_position.x - 0.5) * aspect_ratio + 0.5
-	var center_pos = Vector2(transformed_position.x,1.0-transformed_position.y)
-	$Shockwave/ColorRect.material.set_shader_param("center", center_pos)
-	$Shockwave/AnimationPlayer.current_animation = "Pulse"
-	$Shockwave/AnimationPlayer.play("Pulse")
+	var hp =10
+	create_enemy(Vector2(96, 96), sprite_string, rand_move_spd, rand_anim_spd, hp)
 
 
-func create_enemy(room_pos: Vector2,sprite: String, move_spd: float, anim_spd: float):
+func create_dropped_enemy(room_pos: Vector2, type: String):
+	var drop = load("res://Scenes/Wave/EnemyDrop.tscn")
+	var inst = drop.instance()
+	$YSort.add_child(inst)
+	inst.global_position = room_pos
+	inst.init(2.5, type)
+
+func create_enemy(room_pos: Vector2,sprite: String, move_spd: float, anim_spd: float, hp: int):
 	var enemy_load = load("res://Scenes/Enemy.tscn")
 	var inst = enemy_load.instance()
 	$YSort.add_child(inst)
 	inst.global_position = room_pos
-	inst.init(sprite, move_spd, anim_spd)
+	inst.init(sprite, move_spd, anim_spd, hp)
+	
+	var dust = load("res://Scenes/Particles/DustBomb.tscn")
+	inst = dust.instance()
+	$YSort.add_child(inst)
+	inst.global_position = room_pos
+	
 
 func game_won():
 	var heart_b = get_tree().get_nodes_in_group("heart_building").front()
@@ -62,7 +97,7 @@ func game_won():
 	
 	$Tween.start()
 
-func game_over():
+func game_lose():
 	$Tween.stop_all()
 	var spd = 0.5
 	var heart_b = get_tree().get_nodes_in_group("heart_building").front()

@@ -22,17 +22,23 @@ enum STATE {
 onready var beat_rate: int = BEAT_RATE.MEDIUM_FAST setget set_beat_rate
 onready var state: int = STATE.IDLE
 onready var tweening_up: bool = true
+onready var big_heart_beat_push: bool = false
 onready var main = get_tree().get_nodes_in_group("main").front()
 
 func _ready() -> void:
-	hp=10000000
+	add_to_group("Heart_Building")
+	hp = 10000000
 	tween_heart()
 	set_beat_rate(beat_rate)
+
+func hp_reduced()->void:
+	.hp_reduced()
+	big_heart_beat_push = true
 
 func hp_depleted()->void:
 	if main.game_over:
 		return
-	get_tree().get_nodes_in_group("main").front().game_over()
+	main.game_lose()
 	hp = 10000
 	collision_layer = 0
 	set_animation()
@@ -62,6 +68,16 @@ func anticipate_heart_beat() -> void:
 # emits a signal to fire the players and buildings weapons
 func heart_beat() -> void:
 	Global.level_stats[Global.STATS.HEART_BEATS] += 1
+	if big_heart_beat_push:
+		var enemies: Array = get_tree().get_nodes_in_group("Enemy")
+		var enemy_pos: Vector2
+		var direction: Vector2 
+		for i in enemies:
+			enemy_pos = i.global_position
+			direction = global_position.direction_to(enemy_pos)
+			i.velocity += direction * 1000
+			i.set_hp(1)
+		big_heart_beat_push = false
 	emit_signal("heart_beat")
 
 # Used by the animation player to switch between Idle and Beat

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileSets/WallsTileSet.tres" type="TileSet" id=2]
@@ -12,11 +12,13 @@
 [ext_resource path="res://scripts/buildings/BuiltWalls.gd" type="Script" id=10]
 [ext_resource path="res://Sprites/buildings/full_wall_spritesheet.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Buildings/Previews/PreviewSpearTower.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Buildings/SpearBuilding.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/WaveMaker.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.9, 7.9 )
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=2]
 0/name = "full_wall_spritesheet.png 0"
 0/texture = ExtResource( 11 )
 0/tex_offset = Vector2( 0, -16 )
@@ -32,15 +34,14 @@ extents = Vector2( 7.9, 7.9 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
 shader_param/center = null
 shader_param/force = 0.0
 shader_param/size = 1.5
 shader_param/thickness = null
 
-[sub_resource type="Animation" id=3]
-resource_name = "Pulse"
+[sub_resource type="Animation" id=4]
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/force")
@@ -72,7 +73,9 @@ tracks/1/keys = {
 ]]
 script = ExtResource( 6 )
 
-[node name="YSort" type="YSort" parent="."]
+[node name="YSort" type="YSort" parent="." groups=[
+"ysort",
+]]
 
 [node name="Ground" type="TileMap" parent="YSort"]
 z_index = -1
@@ -116,6 +119,9 @@ script = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="YSort/Camera2D"]
 
+[node name="SpearTower" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 130.926, 188.056 )
+
 [node name="HeartBuilding" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 320, 176 )
 collision_layer = 2147483656
@@ -131,7 +137,7 @@ shape = SubResource( 1 )
 
 [node name="PreviewWalls" type="TileMap" parent="YSort/Preview"]
 z_index = 2
-tile_set = SubResource( 4 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 collision_layer = 0
@@ -147,7 +153,7 @@ visible = false
 script = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="Shockwave"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -158,20 +164,21 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
 method_call_mode = 1
-anims/Pulse = SubResource( 3 )
-
-[node name="Button" type="Button" parent="."]
-margin_left = 160.0
-margin_top = 64.0
-margin_right = 172.0
-margin_bottom = 84.0
-text = "Create Enemy"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anims/Pulse = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 playback_process_mode = 0
+
+[node name="WaveMaker" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="Spawn" type="Timer" parent="WaveMaker"]
+
+[node name="Duration" type="Timer" parent="WaveMaker"]
+
+[node name="Cooldown" type="Timer" parent="WaveMaker"]
 [connection signal="timeout" from="YSort/Camera2D/Timer" to="YSort/Camera2D" method="_on_Timer_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="WaveMaker/Spawn" to="WaveMaker" method="_on_Spawn_timeout"]
+[connection signal="timeout" from="WaveMaker/Duration" to="WaveMaker" method="_on_Duration_timeout"]
+[connection signal="timeout" from="WaveMaker/Cooldown" to="WaveMaker" method="_on_Cooldown_timeout"]

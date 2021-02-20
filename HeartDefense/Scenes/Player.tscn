@@ -36,9 +36,9 @@ frames = SubResource( 2 )
 position = Vector2( 0, 7 )
 script = ExtResource( 5 )
 
-[node name="Bow" parent="AnimatedSprite/Weapons" instance=ExtResource( 3 )]
-visible = false
-is_active = false
-
 [node name="Hammer" parent="AnimatedSprite/Weapons" instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 7, -4.5 )
+
+[node name="Bow" parent="AnimatedSprite/Weapons" instance=ExtResource( 3 )]
+is_active = false

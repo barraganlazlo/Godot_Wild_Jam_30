@@ -1,7 +1,7 @@
 extends TileMap
 
 
-const WALL_COLLISION = preload("res://Scenes/Buildings/WallCollision.tscn")
+const WALL_COLLISION = preload("res://Scenes/Buildings/WallBuilding.tscn")
 
 const MIN_MAP_POS := Vector2(1,2)
 const MAX_MAP_POS := Vector2(38,21)

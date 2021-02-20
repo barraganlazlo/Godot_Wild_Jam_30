@@ -1,10 +1,14 @@
 extends StaticBody2D
 
-onready var hp: int = 1 setget set_hp
+onready var hp: int = 10 setget set_hp
 onready var attack_damage: int = 1
 
 # Ignore this variable \/
 onready var list_of_obj_types: Array = []
+
+func _ready()->void:
+	Global.level_stats[Global.STATS.BUILDINGS_BUILT] += 1
+	add_to_group("Building")
 
 func take_damage(value: int, _position: Vector2)-> void:
 	set_hp(hp-value)
@@ -19,9 +23,12 @@ func set_hp(value: int):
 		hp_reduced()
 
 func hp_depleted():
-	var inst = load("res://Scenes/Particles/Explode.tscn")
+	var inst = load("res://Scenes/Particles/Bomb.tscn")
 	var particle = inst.instance()
-	get_tree().get_root().add_child(particle)
+	particle.global_position = global_position
+	get_tree().get_nodes_in_group("ysort").front().add_child(particle)
+	get_tree().get_nodes_in_group("camera").front().shake(0.25, 0.2)
+	queue_free()
 
 func hp_reduced():
 	var timer
@@ -35,10 +42,6 @@ func hp_reduced():
 	timer.init(0.25)
 
 
-func _ready():
-	Global.level_stats[Global.STATS.BUILDINGS_BUILT] += 1
-	add_to_group("Buildings")
-
 func init(new_hp: int = 10, new_damage: int = 1) -> void:
 	set_hp(new_hp)
 	attack_damage = new_damage
@@ -50,15 +53,13 @@ func set_shader(value):
 		inst = load(value)
 	list_of_obj_types = []
 	deep_search(self, Sprite)
-	print(list_of_obj_types)
 	for i in list_of_obj_types:
 		i.material = inst
 
 func deep_search(object, node_type):
-	if object.get_child_count() == 0:
-		if object is node_type:
-			list_of_obj_types.append(object)
-	else:
+	if object is node_type:
+		list_of_obj_types.append(object)
+	if object.get_child_count() != 0:
 		for i in object.get_children():
 			deep_search(i, node_type)
 

@@ -1,12 +1,12 @@
 extends KinematicBody2D
 
-const PLANTED_ARROW :=preload("res://Scenes/Weapons/Arrow/PlantedArrow.tscn")
+const PLANTED_ARROW :=preload("res://Scenes/Weapons/Arrow/PlantedSpear.tscn")
 
 onready var delete_timer=$DeleteTimer
 
 var velocity := Vector2(0,0)
 var gravity:=0.005
-var damage: int = 1
+var damage: int = 0
 func _ready()->void:
 	set_physics_process(false)
 
