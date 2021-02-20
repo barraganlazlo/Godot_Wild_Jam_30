@@ -2,7 +2,6 @@ extends "res://scripts/buildings/Building.gd"
 
 onready var nearest_targets: Array = []
 onready var attach = $Base/Attach
-onready var animPlayer = $AnimationPlayer
 onready var ysort = get_tree().get_nodes_in_group("ysort").front()
 
 onready var proj_spd = 10
@@ -16,33 +15,28 @@ func _ready():
 
 func anticipate_heart_beat() -> void:
 	if !nearest_targets.empty():
-		animPlayer.play("Anticipate")
+		attach.animation = "Anticipate"
 	else:
-		animPlayer.play("Idle")
+		attach.animation = "Idle"
 
 # Called from animationPlayer
 # emits a signal to fire the players and buildings weapons
 func heart_beat() -> void:
 	if !nearest_targets.empty():
-		animPlayer.play("Fire")
+		attach.animation = "Fire"
 		create_proj(nearest_targets.front().global_position)
 	else:
-		animPlayer.play("Idle")
+		attach.animation = "Idle"
 
-
-func _process(_delta: float) -> void:
-	if !nearest_targets.empty():
-		var target_pos = nearest_targets.front().global_position
-		var attach_pos = attach.global_position
-		attach.rotation = target_pos.angle_to_point(attach_pos)
 
 func create_proj(target_pos):
-	var inst = load("res://Scenes/Weapons/Arrow/FlyingSpear.tscn")
-	var arrow = inst.instance()
-	ysort.add_child(arrow)
-	arrow.global_position=attach.global_position
-	var direction=(target_pos- global_position).normalized()
-	arrow.launch(direction*proj_spd, proj_damage)
+	var inst = load("res://Scenes/Weapons/Arrow/FlyingBomb.tscn")
+	var bomb = inst.instance()
+	ysort.add_child(bomb)
+	bomb.global_position=attach.global_position
+	var dist = global_position - target_pos
+	bomb.launch(dist, proj_spd, proj_damage)
+
 
 func _on_Area2D_body_entered(body) -> void:
 	nearest_targets.append(body)
@@ -51,5 +45,7 @@ func _on_Area2D_body_exited(body) -> void:
 	if nearest_targets.has(body):
 		nearest_targets.erase(body)
 
-func heart_beat_done():
-	animPlayer.play("Idle")
+
+func _on_Attach_animation_finished() -> void:
+	if attach.animation == "Fire":
+		attach.animation = "Idle"

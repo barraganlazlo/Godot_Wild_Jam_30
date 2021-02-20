@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/coin/coin_anim_f1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/coin/coin_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/coin/coin_anim_f3.png" type="Texture" id=3]
+[ext_resource path="res://scripts/wave/Coin.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Particles/Glitter.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 8.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[node name="Coin" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TweenTimer" type="Timer" parent="Tween"]
+
+[node name="FlashTimer" type="Timer" parent="."]
+
+[node name="Glitter" parent="." instance=ExtResource( 5 )]
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
+[connection signal="timeout" from="Tween/TweenTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]

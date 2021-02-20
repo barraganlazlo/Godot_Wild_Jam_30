@@ -89,7 +89,7 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 		frame_res = res + "_idle_anim_f" + str(i) + ".png"
 		frame_tex = load(frame_res)
 		frames.add_frame("Idle", frame_tex, float(i)/frame_pos)
-		print(frame_res)
+	
 		frame_res = res + "_run_anim_f" + str(i) + ".png"
 		frame_tex = load(frame_res)
 		frames.add_frame("Run", frame_tex, float(i)/frame_pos)

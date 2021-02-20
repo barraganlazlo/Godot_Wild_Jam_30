@@ -21,7 +21,7 @@ var last_target_map_pos:=Vector2(-1,-1)
 
 
 #BUILDINGS
-enum {WALL, SPEAR, NUMBER_BUILDING_TYPES}
+enum {WALL, SPEAR, BOMB, NUMBER_BUILDING_TYPES}
 
 var current_building:=WALL
 
@@ -31,7 +31,8 @@ onready var buildings_preview:=[
 ]
 var buildings_scene:=[
 	null,
-	preload("res://Scenes/Buildings/SpearBuilding.tscn")
+	preload("res://Scenes/Buildings/SpearBuilding.tscn"),
+	preload("res://Scenes/Buildings/BombBuilding.tscn"),
 ]
 #END BUILDINGS
 
@@ -41,7 +42,6 @@ func _ready():
 
 
 func receive_type(type):
-	print(type)
 	if type == -1:
 		main.player.select(1)
 	else:

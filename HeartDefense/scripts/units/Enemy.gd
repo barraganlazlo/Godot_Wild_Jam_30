@@ -24,7 +24,6 @@ func hp_reduced():
 	var anim_s = Global.enemy_types[type][1]
 	var max_hp = Global.enemy_types[type][2]
 	var weak_ratio = float(hp) / float(max_hp) 
-	print(weak_ratio)
 	set_move_spd(weak_ratio * move_s)
 	set_animation_spd(weak_ratio * anim_s)
 	

@@ -26,7 +26,7 @@ func _process(_delta:float)-> void:
 		Global.level_stats[Global.STATS.ARROWS_SHOT] += 1
 		arrow.global_position=global_position
 		var direction=(get_global_mouse_position()- global_position).normalized()
-		print("shoot : ",direction)
+		
 		var player_arrow_damage = Global.player_type[0]
 		arrow.launch(direction*arrow_speed, player_arrow_damage)
 		

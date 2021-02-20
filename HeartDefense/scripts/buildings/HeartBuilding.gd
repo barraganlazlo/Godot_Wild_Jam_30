@@ -52,7 +52,6 @@ func hp_depleted()->void:
 func set_beat_rate(rate: int) -> void:
 	var new_rate: float = stepify(float(rate)/60.0, 0.01)
 	var idle_anim = $AnimationPlayer.get_animation("Idle")
-	print(new_rate)
 	idle_anim.remove_track(1)
 	idle_anim.length = new_rate
 	var new_track = idle_anim.add_track(idle_anim.TYPE_METHOD)

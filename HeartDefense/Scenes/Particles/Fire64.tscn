@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/particles/Fire.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.317881, 0.781457, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.910889, 0.429688, 1, 1, 0.498718, 0.253906, 1, 0.992188, 0, 0.20929, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.0172414, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.235632, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.850575, 0.726136 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 32, 32, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, -30, 0 )
+initial_velocity = 10.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 25.0
+angle_random = 1.0
+scale = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[node name="Fire64" type="Particles2D"]
+amount = 24
+process_material = SubResource( 5 )
+script = ExtResource( 1 )

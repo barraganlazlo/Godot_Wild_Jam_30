@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/building_bomb_attach4.png-87e3a2e4f5f7bdf3371e9f1a30e6a309.stex"
+path="res://.import/CoinTally.png-b5dc208ba757940f816b6267746f140e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/buildings/bomb/building_bomb_attach4.png"
-dest_files=[ "res://.import/building_bomb_attach4.png-87e3a2e4f5f7bdf3371e9f1a30e6a309.stex" ]
+source_file="res://Sprites/gui/CoinTally.png"
+dest_files=[ "res://.import/CoinTally.png-b5dc208ba757940f816b6267746f140e.stex" ]
 
 [params]
 

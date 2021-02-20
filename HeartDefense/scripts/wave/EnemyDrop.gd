@@ -18,7 +18,6 @@ func init(drop_speed: float, new_type):
 func _on_Tween_tween_all_completed() -> void:
 	var main: Node2D = get_tree().get_nodes_in_group("main").front()
 	var type_data = Global.enemy_types[type]
-	print(type_data)
 	main.create_enemy(global_position, type,
 		type_data[0], type_data[1], type_data[2])
 	queue_free()

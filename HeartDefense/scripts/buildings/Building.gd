@@ -15,7 +15,6 @@ func take_damage(value: int, _position: Vector2)-> void:
 
 
 func set_hp(value: int):
-	print("new hp = %s" % [value])
 	hp = value
 	if hp <= 0:
 		hp_depleted()
@@ -27,7 +26,7 @@ func hp_depleted():
 	var particle = inst.instance()
 	particle.global_position = global_position
 	get_tree().get_nodes_in_group("ysort").front().add_child(particle)
-	get_tree().get_nodes_in_group("camera").front().shake(0.25, 0.2)
+	get_tree().get_nodes_in_group("camera").front().shake(0.5, 0.4)
 	queue_free()
 
 func hp_reduced():

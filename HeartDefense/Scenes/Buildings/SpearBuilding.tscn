@@ -14,7 +14,6 @@ radius = 104.0
 [sub_resource type="Animation" id=3]
 resource_name = "Anticipate"
 length = 0.1
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Base/Attach/Weapon:position")
 tracks/0/interp = 1
@@ -30,7 +29,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "Fire"
-length = 0.1
+length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Base/Attach/Weapon:position")
 tracks/0/interp = 1
@@ -38,10 +38,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -10, 0.5 ), Vector2( 12, 0.5 ) ]
+"values": [ Vector2( -10, 0.5 ), Vector2( 15, 0.5 ), Vector2( -10, 0.5 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -62,7 +62,7 @@ position = Vector2( 0.5, -4 )
 texture = ExtResource( 2 )
 
 [node name="Weapon" type="Sprite" parent="Base/Attach"]
-position = Vector2( -2.5, 0 )
+position = Vector2( -10, 0.5 )
 texture = ExtResource( 3 )
 offset = Vector2( 4, 0 )
 

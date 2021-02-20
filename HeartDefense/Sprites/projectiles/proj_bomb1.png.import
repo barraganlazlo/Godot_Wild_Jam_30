@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/building_bomb_attach4.png-87e3a2e4f5f7bdf3371e9f1a30e6a309.stex"
+path="res://.import/proj_bomb1.png-e780bd6c326d78160e3a34079af29a9f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/buildings/bomb/building_bomb_attach4.png"
-dest_files=[ "res://.import/building_bomb_attach4.png-87e3a2e4f5f7bdf3371e9f1a30e6a309.stex" ]
+source_file="res://Sprites/projectiles/proj_bomb1.png"
+dest_files=[ "res://.import/proj_bomb1.png-e780bd6c326d78160e3a34079af29a9f.stex" ]
 
 [params]
 

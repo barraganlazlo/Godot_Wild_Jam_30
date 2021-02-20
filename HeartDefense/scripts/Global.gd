@@ -10,8 +10,12 @@ enum STATS {
 	limit,
 }
 
-# [ Damage ]
-onready var player_type: Array = [1]
+enum PLAYER {
+	DAMAGE,
+	MONEY
+}
+# [ Damage , Money ]
+onready var player_type: Array = [1, 0]
 
 onready var enemy_types: Dictionary = {
 	# [ Move spd , Animation spd , Hp ]
