@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SelectedTab.png-204a88516c92ac0877f28c2583816899.stex"
+path="res://.import/Tab.png-3987c082f56f28e2e3aabe998d90e657.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Gui/SelectedTab.png"
-dest_files=[ "res://.import/SelectedTab.png-204a88516c92ac0877f28c2583816899.stex" ]
+source_file="res://Sprites/gui/Tab.png"
+dest_files=[ "res://.import/Tab.png-3987c082f56f28e2e3aabe998d90e657.stex" ]
 
 [params]
 

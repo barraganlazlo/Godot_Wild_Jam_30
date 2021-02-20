@@ -39,6 +39,6 @@ script = ExtResource( 5 )
 [node name="Hammer" parent="AnimatedSprite/Weapons" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 7, -4.5 )
+is_active = false
 
 [node name="Bow" parent="AnimatedSprite/Weapons" instance=ExtResource( 3 )]
-is_active = false

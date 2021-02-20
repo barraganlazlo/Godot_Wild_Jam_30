@@ -4,7 +4,7 @@ onready var time
 
 func init(time: float = 0.5) -> void:
 	stop()
-	get_parent().set_shader("res://shaders/flash.material")
+	get_parent().set_shader("res://Shaders/flash.material")
 	wait_time = time
 	start()
 

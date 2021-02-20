@@ -15,24 +15,22 @@ onready var old_option = null
 onready var mouse_position = Vector2.ZERO
 onready var selected_type = -1
 onready var fading = false
+onready var option_preload = preload("res://Scenes/Gui/Option.tscn")
 
 func _ready():
-	var build_options : Array = ["res://Scenes/Buildings/WallBuilding.tscn",
-	"res://Scenes/Buildings/SpearBuilding.tscn"]
-	var build_sprites : Array = ["res://Sprites/buildings/building_base.png",
-	"res://Sprites/buildings/spear/building_spear_weapon.png"]
-	var build_options_size = 2
+	var build_sprites : Array = ["res://Sprites/weapons/bow/weapon_bow1.png","res://Sprites/buildings/building_base.png",
+	"res://Sprites/buildings/spear/building_spear_weapon_icon.png"]
+	var build_options_size = build_sprites.size()
 	
 	var max_value = build_options_size
 	var angle_diff = 360.0 / float(max_value)
 	var init_angle : float = 0.0
-	var inst
-	var option_preload = load("res://Scenes/Gui/Option.tscn")
+
 	for i in build_options_size:
-		inst = option_preload.instance()
+		var inst = option_preload.instance()
 		add_child(inst)
 		inst.connect("set_type", self, "set_type")
-		inst.initialize(build_sprites[i], i, max_value, init_angle)
+		inst.initialize(build_sprites[i], i-1, max_value, init_angle)
 		options_list.append(inst)
 		init_angle += angle_diff
 	
@@ -50,9 +48,9 @@ func fade_out():
 	$Tween.start()
 
 
-func _physics_process(_delta):
+func _process(_delta):
 	if !fading:
-		if Input.is_action_pressed("mouse_right"): # When release, destroy and send new updated build index
+		if Input.is_action_pressed("select building"): # When release, destroy and send new updated build index
 			mouse_position = to_local(get_global_mouse_position())
 			update()
 			choose_options()
@@ -63,7 +61,6 @@ func _physics_process(_delta):
 				buildWheelPlayer.play_confirm_select()
 			if selected_type == -1:
 				player.select(1)
-				player.build_wheel_allowed = false
 			else:
 				emit_signal("pass_on_type", selected_type)
 

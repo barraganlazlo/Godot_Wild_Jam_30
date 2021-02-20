@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tab.png-44f80b1f56a69439f2c194fa30cea55f.stex"
+path="res://.import/building_spear_weapon_icon.png-46aeacae6e45fea7f9d2e24625486c45.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Gui/Tab.png"
-dest_files=[ "res://.import/Tab.png-44f80b1f56a69439f2c194fa30cea55f.stex" ]
+source_file="res://Sprites/buildings/spear/building_spear_weapon_icon.png"
+dest_files=[ "res://.import/building_spear_weapon_icon.png-46aeacae6e45fea7f9d2e24625486c45.stex" ]
 
 [params]
 

@@ -13,8 +13,8 @@ export var can_build:=true
 onready var immunity: bool = true
 var build_position_is_empty:=true
 
-const FREE_COLOR := Color(0,0,1,0.75)
-const OCCUPIED_COLOR := Color(1,0,0,0.75)
+const FREE_COLOR := Color(0.08,0.89,0.95,0.75)
+const OCCUPIED_COLOR := Color(0.77,0.27,0.27,0.75)
 const BUILD_RANGE := 100
 
 var last_target_map_pos:=Vector2(-1,-1)
@@ -27,7 +27,7 @@ var current_building:=WALL
 
 onready var buildings_preview:=[
 	get_node("/root/Main/YSort/Preview/PreviewWalls"),
-	get_node("/root/Main/YSort/Preview/PreviewSpearTower")
+	get_node("/root/Main/YSort/Preview/PreviewSpearBuilding")
 ]
 var buildings_scene:=[
 	null,
@@ -44,9 +44,8 @@ func receive_type(type):
 	print(type)
 	if type == -1:
 		main.player.select(1)
-		main.player.build_wheel_allowed = true
 	else:
-		current_building = type
+		select(type)
 	
 	immunity = true
 	$Timer.wait_time = 0.05
@@ -83,18 +82,18 @@ func _process(_delta:float)-> void:
 		target_pos_is_free=target_pos_is_free && preview_collision.get_overlapping_bodies().size()==0
 	
 	
-	if(Input.is_action_just_pressed("change building")):
-		var target_building:=(current_building+1) % NUMBER_BUILDING_TYPES
-		select(target_building)
+#	if(Input.is_action_just_pressed("change building")):
+#		var target_building:=(current_building+1) % NUMBER_BUILDING_TYPES
+#		select(target_building)
 	
 	if(target_pos_is_free):
-		#upate the color of the preview
+		#update the color of the preview
 		preview.modulate=FREE_COLOR
 		#Build if it's posible
-		if (can_build && Input.is_action_pressed("mouse_left")) :
+		if (can_build && Input.is_action_pressed("build")) :
 			build(target_map_pos)
 	else:
-		#upate the color of the preview
+		#update the color of the preview
 		preview.modulate=OCCUPIED_COLOR
 		if (can_build && Input.is_action_pressed("destruct")) :
 			destruct(target_map_pos)
@@ -102,15 +101,15 @@ func _process(_delta:float)-> void:
 			built_walls.add_tile(target_map_pos,-1)
 		
 	
-	if Input.is_action_just_released("mouse_right"):
-		if immunity:
-			return
-		main.player.select(1)
-		main.player.build_wheel_allowed = false
-		main.player.show_building_range(0)
-		set_process(false)
-	else:
-		main.player.show_building_range(BUILD_RANGE)
+#	if Input.is_action_just_released("mouse_right"):
+#		if immunity:
+#			return
+#		main.player.select(1)
+#		main.player.build_wheel_allowed = false
+#		main.player.show_building_range(0)
+#		set_process(false)
+#	else:
+#		main.player.show_building_range(BUILD_RANGE)
 
 func update_preview(target_map_pos:Vector2)->void :
 	#update preview collision position
@@ -121,7 +120,7 @@ func update_preview(target_map_pos:Vector2)->void :
 	match current_building:
 		WALL:
 			buildings_preview[WALL].set_cellv(target_map_pos,0)
-		SPEAR:
+		_:
 			buildings_preview[current_building].global_position=world_preview_pos
 	
 func build(target_map_pos:Vector2)->void :
@@ -129,7 +128,7 @@ func build(target_map_pos:Vector2)->void :
 	match current_building:
 		WALL:
 			built_walls.add_tile(target_map_pos,0)
-		SPEAR:
+		_:
 			var building=buildings_scene[current_building].instance()
 			ysort.add_child(building)
 			building.global_position=Vector2(8,8)+built_walls.map_to_world(target_map_pos)

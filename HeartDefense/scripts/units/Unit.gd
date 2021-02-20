@@ -15,6 +15,9 @@ onready var animation_spd: float = 2.25 setget set_animation_spd
 # Ignore this var \/
 onready var list_of_obj_types: Array = []
 
+const FLASH_TIMER = preload("res://Shaders/FlashTimer.tscn")
+const BOMB_PARTICLES = preload("res://Scenes/Particles/Bomb.tscn")
+
 var hp: int = 10 setget set_hp
 
 func take_damage(value: int, knockback: Vector2)-> void:
@@ -31,8 +34,7 @@ func set_hp(value: int):
 		hp_reduced()
 
 func hp_depleted():
-	var inst = load("res://Scenes/Particles/Bomb.tscn")
-	var particle = inst.instance()
+	var particle = BOMB_PARTICLES.instance()
 	get_tree().get_nodes_in_group("ysort").front().add_child(particle)
 	particle.global_position = global_position
 	Global.level_stats[Global.STATS.MONSTERS_KILLED] += 1
@@ -43,8 +45,8 @@ func hp_reduced():
 	if has_node("FlashTimer"):
 		timer = get_node("FlashTimer")
 	else: 
-		var inst = load("res://shaders/FlashTimer.tscn")
-		timer = inst.instance()
+		
+		timer = FLASH_TIMER.instance()
 		add_child(timer)
 		timer.name = "FlashTimer"
 	timer.init(0.5)
@@ -68,7 +70,7 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	set_animation_spd(anim_spd)
 	set_hp(new_hp)
 	
-	var res: String = ("res://Sprites/mobs/" + type + "//" + type) #ogre_idle_anim_f0" + ".png"
+	var res: String = ("res://Sprites/mobs/" + type + "/" + type) #ogre_idle_anim_f0" + ".png"
 	var frames = animSprite.frames
 	
 	# Remove Idle And Run Animation (if any)
@@ -87,7 +89,7 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 		frame_res = res + "_idle_anim_f" + str(i) + ".png"
 		frame_tex = load(frame_res)
 		frames.add_frame("Idle", frame_tex, float(i)/frame_pos)
-		
+		print(frame_res)
 		frame_res = res + "_run_anim_f" + str(i) + ".png"
 		frame_tex = load(frame_res)
 		frames.add_frame("Run", frame_tex, float(i)/frame_pos)

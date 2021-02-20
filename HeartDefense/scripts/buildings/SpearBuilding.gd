@@ -43,7 +43,6 @@ func create_proj(target_pos):
 	arrow.global_position=attach.global_position
 	var direction=(target_pos- global_position).normalized()
 	arrow.launch(direction*proj_spd, proj_damage)
-	
 
 func _on_Area2D_body_entered(body) -> void:
 	nearest_targets.append(body)

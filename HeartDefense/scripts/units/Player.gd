@@ -1,7 +1,8 @@
 extends "res://scripts/units/Unit.gd"
 
 onready var building_limit: int = 100
-onready var build_wheel_allowed:bool = false
+
+const BUILD_WHEEL :=preload("res://Scenes/Gui/BuildWheel.tscn")
 
 func _ready():
 	._ready()
@@ -12,24 +13,21 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	.init(sprite_string, spd, anim_spd, hp)
 	#destination = get_tree().get_nodes_in_group("Heart_Building").front().global_position
 
+enum {WEAPON_HAMMER,WEAPON_BOW}
 onready var weapons :=[
 	$AnimatedSprite/Weapons/Hammer,
 	$AnimatedSprite/Weapons/Bow
 ]
-var current_weapon:=1
+var current_weapon:=WEAPON_BOW
 
 # When right mouse is clicked , change tool to hammer and open build wheel
 # When done placing buildings, (in hammer code) return to bow
 func _process(_delta:float)-> void:
-	if(Input.is_action_just_pressed("mouse_right")):
-		if !build_wheel_allowed:
-			build_wheel_allowed = true
-			#var target_weapon:=(current_weapon+1) % weapons.size()
-			select(0)
-			var inst = load("res://Scenes/Gui/BuildWheel.tscn")
-			var build_wheel = inst.instance()
+	if(Input.is_action_just_pressed("select building")):
+			select(WEAPON_HAMMER)
+			var build_wheel = BUILD_WHEEL.instance()
 			add_child(build_wheel)
-			build_wheel.connect("pass_on_type", weapons[0], "receive_type")
+			build_wheel.connect("pass_on_type", weapons[WEAPON_HAMMER], "receive_type")
 
 
 

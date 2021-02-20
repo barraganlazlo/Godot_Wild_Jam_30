@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Gui/BuildWheel.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Gui/BuildWheelPlayer.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Gui/Tween.gd" type="Script" id=9]
+[ext_resource path="res://scripts/gui/BuildWheel.gd" type="Script" id=7]
+[ext_resource path="res://scripts/gui/BuildWheelPlayer.gd" type="Script" id=8]
+[ext_resource path="res://scripts/gui/Tween.gd" type="Script" id=9]
 
 [node name="BuildWheelNode" type="Position2D"]
 script = ExtResource( 7 )

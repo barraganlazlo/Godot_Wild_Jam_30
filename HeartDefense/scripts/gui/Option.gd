@@ -2,8 +2,8 @@ extends TextureProgress
 
 signal set_type(type)
 
-const OPTION_TEX = preload("res://Scenes/Gui/Tab.png")
-const SELECTED_TEX = preload("res://Scenes/Gui/SelectedTab.png")
+const OPTION_TEX = preload("res://Sprites/gui/Tab.png")
+const SELECTED_TEX = preload("res://Sprites/gui/SelectedTab.png")
 const T_SPD = 1.0
 const T_TRANS = Tween.TRANS_ELASTIC
 const T_EASE = Tween.EASE_OUT
