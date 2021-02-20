@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Sprites/projectiles/planeted_spear.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+export var impacts : Array =[
+	preload(\"res://Sounds/Arrow enemy impact 1.wav\"),
+	preload(\"res://Sounds/Arrow enemy impact 2.wav\"),
+	preload(\"res://Sounds/Arrow enemy impact 3.wav\")
+]
+
+"
 
 [node name="PlantedSpear" type="Sprite"]
 texture = ExtResource( 1 )
 offset = Vector2( -3, 0.5 )
+script = SubResource( 1 )

@@ -9,7 +9,16 @@ onready var player:= $YSort/Player
 onready var camera:= $YSort/Camera2D
 export var center_pos: Vector2 = Vector2(0,0)
 onready var game_over: bool = false
-
+var footsteps: Array =[
+	preload("res://Sounds/footstep 1.wav"),
+	preload("res://Sounds/footstep 2.wav"),
+	preload("res://Sounds/footstep 3.wav"),
+	preload("res://Sounds/footstep 4.wav"),
+	preload("res://Sounds/footstep 5.wav"),
+	preload("res://Sounds/footstep 6.wav"),
+	preload("res://Sounds/footstep 7.wav"),
+	preload("res://Sounds/footstep 8.wav")
+]
 func _ready() -> void: 
 	$WaveMaker.bottom_right = Vector2(room_pixel_size.x-64, room_pixel_size.y-64)
 	$WaveMaker.max_spawn_rect_size = $WaveMaker.top_left - $WaveMaker.bottom_right

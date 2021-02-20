@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Arrow whoosh 2.wav-15f2c08ff2894d5e3031b981df8f128b.sample"
+
+[deps]
+
+source_file="res://Sounds/Arrow whoosh 2.wav"
+dest_files=[ "res://.import/Arrow whoosh 2.wav-15f2c08ff2894d5e3031b981df8f128b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
