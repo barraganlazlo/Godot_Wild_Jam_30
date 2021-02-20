@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NineRect2.png-b111bfd2e6920351d91f663387052378.stex"
+path="res://.import/TitleMidground.png-4a798fbaa8ff6290ab3c25b32dd4fdd1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gui/NineRect2.png"
-dest_files=[ "res://.import/NineRect2.png-b111bfd2e6920351d91f663387052378.stex" ]
+source_file="res://Sprites/title/TitleMidground.png"
+dest_files=[ "res://.import/TitleMidground.png-4a798fbaa8ff6290ab3c25b32dd4fdd1.stex" ]
 
 [params]
 

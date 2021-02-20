@@ -7,7 +7,7 @@ func _ready() -> void:
 	var timer = Timer.new()
 	add_child(timer)
 	timer.connect("timeout", self, "destroy")
-	timer.wait_time = lifetime + 0.15
+	timer.wait_time = lifetime + 0.1
 	timer.start()
 
 

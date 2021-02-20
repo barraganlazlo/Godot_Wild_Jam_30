@@ -54,22 +54,7 @@ func heart_beat():
 	
 	$Shockwave/AnimationPlayer.current_animation = "Pulse"
 	$Shockwave/AnimationPlayer.play("Pulse")
-	return
-	var i = randi() % 5
-	var sprite_string: String = "orc_shaman"
-	if i == 0:
-		sprite_string = "big_demon"
-	elif i == 1:
-		sprite_string = "goblin"
-	elif i == 2:
-		sprite_string = "muddy"
-	elif i == 3:
-		sprite_string = "ogre"
-	var rand_spd: float = rng.randf_range(1.0, 2.25)
-	var rand_move_spd: float = rand_spd * 25
-	var rand_anim_spd: float = rand_spd
-	var hp =10
-	create_enemy(Vector2(96, 96), sprite_string, rand_move_spd, rand_anim_spd, hp)
+
 
 
 func create_dropped_enemy(room_pos: Vector2, type: String):
@@ -79,12 +64,15 @@ func create_dropped_enemy(room_pos: Vector2, type: String):
 	inst.global_position = room_pos
 	inst.init(2.5, type)
 
-func create_enemy(room_pos: Vector2,sprite: String, move_spd: float, anim_spd: float, hp: int):
+func create_enemy(room_pos: Vector2, type: String):
+	var move_spd: float = Global.enemy_types[type][Global.ENEMY.SPD]
+	var anim_spd: float = Global.enemy_types[type][Global.ENEMY.ANIM_SPD]
+	var hp: int = Global.enemy_types[type][Global.ENEMY.HP]
 	var enemy_load = load("res://Scenes/Enemy.tscn")
 	var inst = enemy_load.instance()
 	$YSort.add_child(inst)
 	inst.global_position = room_pos
-	inst.init(sprite, move_spd, anim_spd, hp)
+	inst.init(type, move_spd, anim_spd, hp)
 	
 	var dust = load("res://Scenes/Particles/DustBomb.tscn")
 	inst = dust.instance()
@@ -135,12 +123,14 @@ func _on_Tween_tween_all_completed() -> void:
 		i.set_animation_spd(0.0)
 		i.set_physics_process(false)
 		i.set_process(false)
+		
 	var player = get_tree().get_nodes_in_group("Player").front()
-	player.set_animation_spd(0.0)
-	player.set_physics_process(false)
-	player.set_process(false)
-	var weapons = get_tree().get_nodes_in_group("Weapons").front()
-	weapons.queue_free()
+	if player != null:
+		player.set_animation_spd(0.0)
+		player.set_physics_process(false)
+		player.set_process(false)
+		var weapons = get_tree().get_nodes_in_group("Weapons").front()
+		weapons.queue_free()
 	
 	
 	var results: String = "Won"

@@ -10,13 +10,13 @@ func _ready():
 func init(new_total_time: float, wave: int) -> void:
 	total_time = new_total_time
 	incoming_wave = wave
-	$Label.text = ("Wave " + str(wave + 1))
+	$Label.text = ("Wave " + str(wave))
 	$Timer.wait_time = total_time
 	$Timer.start()
 	$Tween.interpolate_property(self, "modulate", Color(1.0,1.0,1.0,0.0), Color(1.0, 1.0, 1.0, 1.0), 1.0, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	$Tween.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	remaining_time = $Timer.time_left
 	$WaveTimer.value = 360 * (1 - (remaining_time/total_time))
 

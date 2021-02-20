@@ -21,7 +21,7 @@ onready var types: Array = []
 onready var spawn_duration: float = 10.0
 
 # What wave it is
-onready var wave: int = 1
+onready var wave: int = 0
 
 # How much time to next wave
 onready var wave_cooldown: float = 15.0
@@ -35,7 +35,7 @@ func init(wave_num: int = 1):
 	if has_method(next_wave_method):
 		call(next_wave_method)
 	else:
-		print("YOU WIN")
+		main.game_won()
 	
 	spawn.wait_time = spawn_spd
 	duration.wait_time = spawn_duration
@@ -46,18 +46,80 @@ func init(wave_num: int = 1):
 	wave = wave_num
 
 
+#	"muddy": 		[15, 0.75, 5, 1, 0.2],
+#	"goblin": 		[50, 1.25, 3, 1, 0.3],
+#	"orc_shaman": 	[25, 1.0, 8, 2, 0.3],
+#	"zombie": 		[5, 0.5, 20, 3, 1.0],
+#	"big_zombie": 	[50, 1.25, 3, 1, 0.3],
+#	"skelet": 		[50, 1.25, 3, 1, 0.3],
+#	"swampy": 		[50, 1.25, 3, 1, 0.3],
+#	"big_demon": 	[75, 1.75, 5, 2, 0.7],
+#	"ogre": 		[5, 0.5, 20, 3, 1.0],
+func level_0():
+	types = []
+	spawn_spd = 100.0
+	spawn_duration = 1.0
+	wave_cooldown = 5.0
 
 func level_1():
-	types = ["muddy"]
-	spawn_spd = 0.5
-	spawn_duration = 3.0
-	wave_cooldown = 15.0
+	types = ["orc_shaman"]
+	spawn_spd = 1.25
+	spawn_duration = 15.0
+	wave_cooldown = 8.0
 
 func level_2():
-	types = ["muddy"]
+	types = ["muddy", "goblin"]
+	spawn_spd = 1.0
+	spawn_duration = 20.0
+	wave_cooldown = 10.0
+
+func level_3():
+	types = ["muddy", "goblin", "orc_shaman"]
+	spawn_spd = 0.75
+	spawn_duration = 20.0
+	wave_cooldown = 10.0
+
+func level_4():
+	types = [ "goblin", "orc_shaman", "zombie"]
+	spawn_spd = .75
+	spawn_duration = 25.0
+	wave_cooldown = 10.0
+
+func level_5():
+	types = ["orc_shaman", "zombie", "big_zombie"]
+	spawn_spd = 0.75
+	spawn_duration = 25.0
+	wave_cooldown = 10.0
+
+func level_6():
+	types = [ "zombie", "big_zombie", "skelet"]
+	spawn_spd = 0.6
+	spawn_duration = 25.0
+	wave_cooldown = 10.0
+
+func level_7():
+	types = ["big_zombie", "skelet", "swampy"]
 	spawn_spd = 0.5
-	spawn_duration = 99.0
-	wave_cooldown = 15.0
+	spawn_duration = 25.0
+	wave_cooldown = 10.0
+
+func level_8():
+	types = ["skelet", "swampy", "big_demon"]
+	spawn_spd = 0.4
+	spawn_duration = 25.0
+	wave_cooldown = 10.0
+
+func level_9():
+	types = ["swampy", "big_demon"]
+	spawn_spd = 0.35
+	spawn_duration = 25.0
+	wave_cooldown = 30.0
+
+func level_10():
+	types = ["ogre"]
+	spawn_spd = 0.25
+	spawn_duration = 30.0
+	wave_cooldown = 10.0
 
 func _on_Spawn_timeout() -> void:
 	# Enemy spawn in top-left and bottom-right with a random x,y offset

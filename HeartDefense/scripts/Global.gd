@@ -26,13 +26,18 @@ enum ENEMY {
 	MONEY,
 	MONEY_CHANCE,
 }
+
 onready var enemy_types: Dictionary = {
 	# [ Move spd , Animation spd , Hp , Money_amount, Money_chance]
-	"muddy": 		[20, 0.75, 5, 1, 0.2],
-	"big_demon": 	[40, 0.75, 5, 2, 0.8],
-	"orc_shaman": 	[40, 0.75, 5, 1, 0.3],
-	"ogre": 		[40, 0.75, 5, 5, 1.0],
-	"goblin": 		[40, 0.75, 5, 2, 0.3],
+	"muddy": 		[25, 0.75, 5, 1, 0.5],
+	"goblin": 		[60, 1.75, 7, 1, 0.75],
+	"orc_shaman": 	[20, 0.75, 3, 2, 0.5],
+	"zombie": 		[15, 0.50, 12, 2, 1.0],
+	"big_zombie": 	[10, 0.50, 26, 3, 1.0],
+	"skelet": 		[35, 1.0, 3, 2, 0.4],
+	"swampy": 		[30, 1.25, 15, 3, 0.5],
+	"big_demon": 	[125, 1.75, 3, 1, 0.9],
+	"ogre": 		[15, 0.5, 50, 5, 1.0],
 }
 
 enum BUILDING {
@@ -66,4 +71,4 @@ func retry():
 	call_deferred("go_to_scene")
 	
 func go_to_scene():
-	get_tree().change_scene("res://Scenes/Main.tscn")
+	get_tree().change_scene("res://Scenes/main.tscn")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Buildings/SpearBuilding.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Buildings/HeartBuilding.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Buildings/Previews/PreviewSpearTower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/buildings/full_wall_spritesheet.png" type="Texture" id=5]
@@ -156,9 +155,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpearTower" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 130.926, 188.056 )
-
 [node name="HeartBuilding" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 320, 176 )
 collision_layer = 2147483656
@@ -184,6 +180,27 @@ format = 1
 [node name="PreviewSpearBuilding" parent="YSort/Preview" instance=ExtResource( 4 )]
 
 [node name="Buildings" type="Node2D" parent="YSort"]
+
+[node name="Coin" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 329.125, 87.9842 )
+
+[node name="Coin2" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 373, 129 )
+
+[node name="Coin3" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 247, 155 )
+
+[node name="Coin4" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 373, 216 )
+
+[node name="Coin5" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 248, 206 )
+
+[node name="Coin6" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 294, 246 )
+
+[node name="Coin7" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 269, 103 )
 
 [node name="Shockwave" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
@@ -220,9 +237,6 @@ one_shot = true
 
 [node name="Cooldown" type="Timer" parent="WaveMaker"]
 one_shot = true
-
-[node name="Coin" parent="." instance=ExtResource( 15 )]
-position = Vector2( 329.125, 87.9842 )
 [connection signal="timeout" from="YSort/Camera2D/Timer" to="YSort/Camera2D" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="YSort/Camera2D/CoinTally/Tween" to="YSort/Camera2D/CoinTally" method="_on_Tween_tween_all_completed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

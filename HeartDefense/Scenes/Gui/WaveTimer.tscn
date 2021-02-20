@@ -22,9 +22,8 @@ __meta__ = {
 }
 
 [node name="WaveTimer" type="TextureProgress" parent="."]
-margin_top = 4.0
 margin_right = 48.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 5
@@ -36,17 +35,17 @@ texture_progress = ExtResource( 3 )
 fill_mode = 4
 
 [node name="Label2" type="Label" parent="."]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 48.0
-margin_bottom = 66.0
+margin_bottom = 62.0
 custom_colors/font_color = Color( 1, 0.4, 0.4, 1 )
 text = "Incoming:"
 align = 1
 
 [node name="Label" type="Label" parent="."]
-margin_top = 66.0
+margin_top = 62.0
 margin_right = 48.0
-margin_bottom = 80.0
+margin_bottom = 76.0
 custom_colors/font_color = Color( 1, 0.12549, 0.12549, 1 )
 text = "Wave 1"
 align = 1

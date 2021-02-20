@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NineRect2.png-b111bfd2e6920351d91f663387052378.stex"
+path="res://.import/TitleHyperForeground.png-5dcda8b6c37862b34e62e0cfbc74138b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gui/NineRect2.png"
-dest_files=[ "res://.import/NineRect2.png-b111bfd2e6920351d91f663387052378.stex" ]
+source_file="res://Sprites/title/TitleHyperForeground.png"
+dest_files=[ "res://.import/TitleHyperForeground.png-5dcda8b6c37862b34e62e0cfbc74138b.stex" ]
 
 [params]
 
