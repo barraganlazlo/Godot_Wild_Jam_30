@@ -78,8 +78,7 @@ func _process(_delta:float)-> void:
 	#check if the tile where the preview is is free
 	var target_pos_is_free=built_walls.get_cellv(target_map_pos)==-1
 	#check if the if there are enemies or the player on the preview tile
-	if(preview_collision):
-		target_pos_is_free=target_pos_is_free && preview_collision.get_overlapping_bodies().size()==0
+	target_pos_is_free=target_pos_is_free && preview_collision.get_overlapping_bodies().size()==0
 	
 	
 #	if(Input.is_action_just_pressed("change building")):
@@ -138,7 +137,7 @@ func destruct(target_map_pos:Vector2)->void :
 	built_walls.add_tile(target_map_pos,-1)
 	var bodies=preview_collision.get_overlapping_bodies()
 	for body in bodies:
-		body.queuefree()
+		body.queue_free()
 	
 func select(target_building)-> void:
 	if target_building==current_building:
