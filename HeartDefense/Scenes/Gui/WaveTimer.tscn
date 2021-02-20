@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Gui/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/gui/WaveTimer1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/gui/WaveTimer2.png" type="Texture" id=3]
+[ext_resource path="res://scripts/gui/WaveTimer.gd" type="Script" id=4]
+
+[node name="WaveTimer" type="VBoxContainer"]
+anchor_right = 0.075
+anchor_bottom = 0.183
+margin_bottom = 0.119995
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+theme = ExtResource( 1 )
+custom_constants/separation = 0
+alignment = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaveTimer" type="TextureProgress" parent="."]
+margin_top = 4.0
+margin_right = 48.0
+margin_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+max_value = 360.0
+value = 2.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 4
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 52.0
+margin_right = 48.0
+margin_bottom = 66.0
+custom_colors/font_color = Color( 1, 0.4, 0.4, 1 )
+text = "Incoming:"
+align = 1
+
+[node name="Label" type="Label" parent="."]
+margin_top = 66.0
+margin_right = 48.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 1, 0.12549, 0.12549, 1 )
+text = "Wave 1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -146,9 +146,9 @@ anchor_left = -0.625
 anchor_top = -0.182
 anchor_right = 1.722
 anchor_bottom = 1.097
-margin_left = 18.008
+margin_left = 17.008
 margin_top = 0.0700009
-margin_right = -19.238
+margin_right = -20.238
 margin_bottom = 0.0010004
 custom_colors/font_color = Color( 1, 0.956863, 0.341176, 1 )
 text = "0"
@@ -213,10 +213,13 @@ playback_process_mode = 0
 script = ExtResource( 7 )
 
 [node name="Spawn" type="Timer" parent="WaveMaker"]
+one_shot = true
 
 [node name="Duration" type="Timer" parent="WaveMaker"]
+one_shot = true
 
 [node name="Cooldown" type="Timer" parent="WaveMaker"]
+one_shot = true
 
 [node name="Coin" parent="." instance=ExtResource( 15 )]
 position = Vector2( 329.125, 87.9842 )

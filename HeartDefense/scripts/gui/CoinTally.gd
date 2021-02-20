@@ -24,14 +24,13 @@ func update_label():
 
 func update_tally(gain: bool):
 	gain_coin = gain
-
 	tween()
 
 
 func tween():
 	var mod = Color(1.0, 0.1, 0.2, 1.0)
 	if gain_coin:
-		mod = Color(0.1, 1.0, 0.5, 1.0)
+		mod = Color(0.9, 1.0, 0.3, 1.0)
 	tween.stop_all()
 	if tween_up:
 		label.rect_scale = Vector2(1.0,1.0)

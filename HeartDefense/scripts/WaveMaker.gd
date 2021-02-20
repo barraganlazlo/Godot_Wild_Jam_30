@@ -50,9 +50,14 @@ func init(wave_num: int = 1):
 func level_1():
 	types = ["muddy"]
 	spawn_spd = 0.5
-	spawn_duration = 99.0
+	spawn_duration = 3.0
 	wave_cooldown = 15.0
 
+func level_2():
+	types = ["muddy"]
+	spawn_spd = 0.5
+	spawn_duration = 99.0
+	wave_cooldown = 15.0
 
 func _on_Spawn_timeout() -> void:
 	# Enemy spawn in top-left and bottom-right with a random x,y offset
@@ -79,6 +84,11 @@ func _on_Spawn_timeout() -> void:
 func _on_Duration_timeout() -> void:
 	spawn.stop()
 	cooldown.start()
+	var inst = load("res://Scenes/Gui/WaveTimer.tscn")
+	var waveTimer = inst.instance()
+	get_tree().get_nodes_in_group("camera").front().add_child(waveTimer)
+	waveTimer.init(wave_cooldown, wave)
+	waveTimer.rect_position += Vector2(0,-64)
 
 func _on_Cooldown_timeout() -> void:
 	init(wave + 1)
