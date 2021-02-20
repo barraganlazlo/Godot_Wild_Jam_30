@@ -97,7 +97,7 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	animSprite.playing = true
 
 func _physics_process(delta: float) -> void:
-	var direction: Vector2 = global_position.direction_to(destination)
+	direction = global_position.direction_to(destination)
 	velocity = velocity.move_toward(direction * move_spd ,1000.0 * delta)
 	move_and_slide(velocity)
 

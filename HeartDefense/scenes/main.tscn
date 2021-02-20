@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Buildings/SpearBuilding.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/Wave/Coin.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Gui/Theme.tres" type="Theme" id=16]
 [ext_resource path="res://Sprites/gui/CoinTally.png" type="Texture" id=17]
+[ext_resource path="res://scripts/gui/CoinTally.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.9, 7.9 )
@@ -122,11 +123,14 @@ script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="YSort/Camera2D"]
 
-[node name="Sprite" type="Sprite" parent="YSort/Camera2D"]
+[node name="CoinTally" type="Sprite" parent="YSort/Camera2D"]
 position = Vector2( 0, -124 )
 texture = ExtResource( 17 )
+script = ExtResource( 18 )
 
-[node name="ColorRect" type="ColorRect" parent="YSort/Camera2D/Sprite"]
+[node name="Tween" type="Tween" parent="YSort/Camera2D/CoinTally"]
+
+[node name="ColorRect" type="ColorRect" parent="YSort/Camera2D/CoinTally"]
 margin_left = -9.0
 margin_top = -9.0
 margin_right = 9.0
@@ -137,13 +141,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="YSort/Camera2D/Sprite/ColorRect"]
-margin_left = 0.757996
-margin_top = -1.932
-margin_right = 18.758
-margin_bottom = 12.068
-text = "16"
-align = 1
+[node name="Label" type="Label" parent="YSort/Camera2D/CoinTally/ColorRect"]
+anchor_left = -0.625
+anchor_top = -0.182
+anchor_right = 1.722
+anchor_bottom = 1.097
+margin_left = 17.008
+margin_top = 1.07
+margin_right = 16.762
+margin_bottom = 1.001
+custom_colors/font_color = Color( 1, 0.956863, 0.341176, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SpearTower" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 130.926, 188.056 )
@@ -181,10 +192,8 @@ script = ExtResource( 8 )
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.0936279
-margin_top = -0.795979
-margin_right = 0.0936279
-margin_bottom = -0.79599
+margin_top = -1.0
+margin_bottom = -1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -210,6 +219,7 @@ script = ExtResource( 7 )
 [node name="Coin" parent="." instance=ExtResource( 15 )]
 position = Vector2( 329.125, 87.9842 )
 [connection signal="timeout" from="YSort/Camera2D/Timer" to="YSort/Camera2D" method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="YSort/Camera2D/CoinTally/Tween" to="YSort/Camera2D/CoinTally" method="_on_Tween_tween_all_completed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="WaveMaker/Spawn" to="WaveMaker" method="_on_Spawn_timeout"]
 [connection signal="timeout" from="WaveMaker/Duration" to="WaveMaker" method="_on_Duration_timeout"]
