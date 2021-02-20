@@ -35,10 +35,17 @@ onready var enemy_types: Dictionary = {
 	"goblin": 		[40, 0.75, 5, 2, 0.3],
 }
 
+enum BUILDING {
+	HP,
+	DAMAGE,
+	PROJ_SPD,
+	COST,
+}
 onready var building_types: Dictionary = {
-	# [ Hp , Damage , proj_spd]
-	"spear": [2, 2 , 700],
-	"wall":  [3, 0 , 0]
+	# [ Hp , Damage , proj_spd, cost]
+	"spear": 	[2, 3 , 700, 3],
+	"wall":  	[3, 0 , 0, 1],
+	"bomb": 	[1, 2 , 10, 3],
 }
 
 func _ready() -> void:

@@ -124,6 +124,20 @@ func update_preview(target_map_pos:Vector2)->void :
 	
 func build(target_map_pos:Vector2)->void :
 	animation_player.play("Build")
+	var player_money: int = Global.player_type[Global.PLAYER.MONEY]
+	var cost: int
+	if current_building == 0:
+		cost = Global.building_types["wall"][Global.BUILDING.COST]
+	elif current_building == 1:
+		cost = Global.building_types["spear"][Global.BUILDING.COST]
+	elif current_building == 2:
+		cost = Global.building_types["bomb"][Global.BUILDING.COST]
+	
+	if cost > player_money:
+		Global.update_coins(0)
+		return
+	Global.update_coins(-cost)
+	
 	match current_building:
 		WALL:
 			built_walls.add_tile(target_map_pos,0)
