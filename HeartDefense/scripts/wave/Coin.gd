@@ -1,5 +1,6 @@
 extends Area2D
 
+<<<<<<< Updated upstream
 onready var life_timer: Timer = $LifeTimer
 onready var tween_timer: Timer = $Tween/TweenTimer
 onready var flash_timer: Timer = $FlashTimer
@@ -61,3 +62,19 @@ func _on_FlashTimer_timeout() -> void:
 func _on_Coin_body_entered(body) -> void:
 	Global.player_type[Global.PLAYER.MONEY] += 1
 	queue_free()
+=======
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pass
+>>>>>>> Stashed changes

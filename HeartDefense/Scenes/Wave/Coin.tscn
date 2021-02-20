@@ -1,10 +1,17 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=8 format=2]
+=======
+[gd_scene load_steps=6 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://Sprites/coin/coin_anim_f1.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/coin/coin_anim_f0.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/coin/coin_anim_f3.png" type="Texture" id=3]
+<<<<<<< Updated upstream
 [ext_resource path="res://scripts/wave/Coin.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Particles/Glitter.tscn" type="PackedScene" id=5]
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
@@ -19,15 +26,19 @@ animations = [ {
 } ]
 
 [node name="Coin" type="Area2D"]
+<<<<<<< Updated upstream
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 4 )
+=======
+>>>>>>> Stashed changes
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+<<<<<<< Updated upstream
 frame = 1
 playing = true
 
@@ -44,3 +55,9 @@ playing = true
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
 [connection signal="timeout" from="Tween/TweenTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
+=======
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+>>>>>>> Stashed changes
