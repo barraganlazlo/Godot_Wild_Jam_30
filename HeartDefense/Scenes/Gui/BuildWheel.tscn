@@ -5,6 +5,7 @@
 [ext_resource path="res://scripts/gui/Tween.gd" type="Script" id=9]
 
 [node name="BuildWheelNode" type="Position2D"]
+z_index = 1000
 script = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]

@@ -3,6 +3,7 @@ extends "res://scripts/buildings/Building.gd"
 onready var built_walls := get_node("..")
 
 func _ready()->void:
+	._ready()
 	hp= Global.building_types["wall"][0]
 
 func hp_depleted()->void:

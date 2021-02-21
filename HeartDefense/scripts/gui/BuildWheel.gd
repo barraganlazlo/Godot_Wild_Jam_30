@@ -18,8 +18,12 @@ onready var fading = false
 onready var option_preload = preload("res://Scenes/Gui/Option.tscn")
 
 func _ready():
-	var build_sprites : Array = ["res://Sprites/weapons/bow/weapon_bow1.png","res://Sprites/buildings/building_base.png",
-	"res://Sprites/buildings/spear/building_spear_weapon_icon.png","res://Sprites/buildings/bomb/building_bomb_attach1.png" ]
+	var build_sprites : Array = [
+	"res://Sprites/weapons/bow/weapon_bow1.png",
+	"res://Sprites/buildings/building_base.png",
+	"res://Sprites/buildings/spear/building_spear_weapon_icon.png",
+	"res://Sprites/buildings/bomb/building_bomb_icon.png" 
+	]
 	var build_options_size = build_sprites.size()
 	
 	var max_value = build_options_size

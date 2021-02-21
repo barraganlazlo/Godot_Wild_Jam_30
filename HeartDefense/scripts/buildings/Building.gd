@@ -9,6 +9,7 @@ onready var list_of_obj_types: Array = []
 func _ready()->void:
 	Global.level_stats[Global.STATS.BUILDINGS_BUILT] += 1
 	add_to_group("Building")
+	print("building")
 
 func take_damage(value: int, _position: Vector2)-> void:
 	set_hp(hp-value)

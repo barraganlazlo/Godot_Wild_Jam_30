@@ -27,12 +27,13 @@ var current_building:=WALL
 
 onready var buildings_preview:=[
 	get_node("/root/Main/YSort/Preview/PreviewWalls"),
-	get_node("/root/Main/YSort/Preview/PreviewSpearBuilding")
+	get_node("/root/Main/YSort/Preview/PreviewSpearBuilding"),
+	get_node("/root/Main/YSort/Preview/PreviewBombBuilding")
 ]
 var buildings_scene:=[
 	null,
 	preload("res://Scenes/Buildings/SpearBuilding.tscn"),
-	preload("res://Scenes/Buildings/BombBuilding.tscn"),
+	preload("res://Scenes/Buildings/BombBuilding.tscn")
 ]
 #END BUILDINGS
 
@@ -97,7 +98,6 @@ func _process(_delta:float)-> void:
 		if (can_build && Input.is_action_pressed("destruct")) :
 			destruct(target_map_pos)
 			animation_player.play("Build")
-			built_walls.add_tile(target_map_pos,-1)
 		
 	
 #	if Input.is_action_just_released("mouse_right"):
@@ -151,7 +151,8 @@ func destruct(target_map_pos:Vector2)->void :
 	built_walls.add_tile(target_map_pos,-1)
 	var bodies=preview_collision.get_overlapping_bodies()
 	for body in bodies:
-		body.queue_free()
+		if body.is_in_group("Building"):
+			body.queue_free()
 	
 func select(target_building)-> void:
 	if target_building==current_building:

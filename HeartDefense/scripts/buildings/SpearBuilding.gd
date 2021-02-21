@@ -9,6 +9,7 @@ onready var proj_spd = 10
 onready var proj_damage = 2
 
 func _ready():
+	._ready()
 	hp = Global.building_types["spear"][0]
 	proj_damage = Global.building_types["spear"][1]
 	proj_spd = Global.building_types["spear"][2]

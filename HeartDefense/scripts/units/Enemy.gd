@@ -3,6 +3,8 @@ extends "res://scripts/units/Unit.gd"
 onready var main: Node2D = get_tree().get_nodes_in_group("main").front()
 onready var damage: int = 1
 onready var ysort = get_tree().get_nodes_in_group("ysort").front()
+const PARTICLE_MAGIC := preload("res://Scenes/Particles/Magic.tscn")
+const COIN:=preload("res://Scenes/Wave/Coin.tscn")
 
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25, new_hp: int = 10):
 	.init(sprite_string, spd, anim_spd, new_hp)
@@ -46,13 +48,12 @@ func hp_depleted():
 	var chance = rand_range(0, 1)
 	if chance < enemy_chance:
 		var money_amount = Global.enemy_types[type][Global.ENEMY.MONEY]
-		var inst = load("res://Scenes/Wave/Coin.tscn")
 		var coin
 		var ran_pos: Vector2
 		for i in money_amount:
 			ran_pos = Vector2((randi() % 10) - 5,(randi() % 10) - 5)
 			# Spawn coins
-			coin = inst.instance()
+			coin = COIN.instance()
 			ysort.add_child(coin)
 			coin.global_position = global_position + ran_pos
 			coin.init()
@@ -71,8 +72,8 @@ func _on_HurtBox_body_entered(body) -> void:
 	var knockback_force = 10.0
 	var knockback = global_position.direction_to(body.global_position) * knockback_force
 	var old_hp = hp
-	set_hp(old_hp - body.hp)
 	body.take_damage(old_hp, knockback)
+	set_hp(old_hp - body.hp)
 
 
 func _on_WakeUp_timeout() -> void:
@@ -85,8 +86,7 @@ func _on_Special_timeout() -> void:
 		var pos: Vector2 = global_position
 		var dir: Vector2 = direction * 25
 		pos += dir
-		main.create_enemy(pos, "skelet")
-		var inst = load("res://Scenes/Particles/Magic.tscn")
-		var magic = inst.instance()
+		main.create_enemy(pos, "skelet")		
+		var magic = PARTICLE_MAGIC.instance()
 		ysort.add_child(magic)
 		magic.global_position = pos
