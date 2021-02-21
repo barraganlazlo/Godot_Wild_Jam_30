@@ -14,7 +14,7 @@ func init(drop_speed: float, new_type):
 	$Tween.interpolate_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.1), 
 		Color(1.0, 1.0, 1.0, 0.7), drop_speed, t_trans, t_ease)
 	$Tween.start()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	play_sound(landing_sound_effects)
 	
 func play_sound(s,volume=0):
