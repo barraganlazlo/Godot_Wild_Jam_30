@@ -3,5 +3,6 @@
 [ext_resource path="res://scripts/SoundAutoDeleteTimer.gd" type="Script" id=1]
 
 [node name="SoundAutoDelete" type="AudioStreamPlayer2D"]
+bus = "sound_effects"
 script = ExtResource( 1 )
 [connection signal="finished" from="." to="." method="_on_SoundAutoDelete_finished"]

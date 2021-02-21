@@ -24,6 +24,11 @@ animations = [ {
 "loop": true,
 "name": "Idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "Fire",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
