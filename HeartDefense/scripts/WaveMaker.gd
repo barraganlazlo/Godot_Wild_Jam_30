@@ -10,7 +10,7 @@ onready var buyable = $Buyable
 onready var destroyEnemy = $DestroyEnemy
 
 onready var buyable_cost = 2
-onready var buyable_chance = 25.0
+onready var buyable_chance = 20.0
 
 onready var main = get_parent()
 onready var top_left: =Vector2(64,64)
@@ -51,9 +51,9 @@ func init(wave_num: int = 1):
 	duration.start()
 	wave = wave_num
 	if wave == 4:
-		buyable_chance = 20
-	elif wave == 8:
 		buyable_chance = 15
+	elif wave == 8:
+		buyable_chance = 10
 
 
 
@@ -80,12 +80,11 @@ func level_0():
 
 func level_1():
 	types = ["muddy"]
-	spawn_spd = 1.75
+	spawn_spd = 1.5
 	spawn_duration = 15.0
 	wave_cooldown = 8.0
 
 func level_2():
-	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	types = ["muddy", "skelet"]
 	spawn_spd = 1.0
 	spawn_duration = 20.0
@@ -93,7 +92,7 @@ func level_2():
 
 func level_3():
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
-	types = ["muddy", "skelet", "skelet"]
+	types = ["muddy", "skelet", "orc_shaman"]
 	spawn_spd = 0.75
 	spawn_duration = 20.0
 	wave_cooldown = 15.0
@@ -104,51 +103,49 @@ func level_4():
 	types = [ "goblin", "orc_shaman", "skelet"]
 	spawn_spd = .75
 	spawn_duration = 25.0
-	wave_cooldown = 15.0
+	wave_cooldown = 20.0
 
 func level_5():
-	Global.building_types["spear"][Global.BUILDING.COST] += 1
-	Global.building_types["wall"][Global.BUILDING.COST] += 1
 	types = ["orc_shaman", "zombie", "big_zombie"]
-	spawn_spd = 0.75
+	spawn_spd = 0.65
 	spawn_duration = 25.0
-	wave_cooldown = 20.0
+	wave_cooldown = 25.0
 
 func level_6():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
 	types = [ "zombie", "big_zombie", "swampy"]
-	spawn_spd = 0.6
-	spawn_duration = 25.0
-	wave_cooldown = 20.0
+	spawn_spd = 0.5
+	spawn_duration = 30.0
+	wave_cooldown = 25.0
 
 func level_7():
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	types = ["big_zombie", "swampy", "chort"]
 	spawn_spd = 0.5
-	spawn_duration = 25.0
-	wave_cooldown = 20.0
+	spawn_duration = 30.0
+	wave_cooldown = 25.0
 
 func level_8():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
 	types = ["chort", "swampy", "big_demon"]
-	spawn_spd = 0.4
-	spawn_duration = 25.0
-	wave_cooldown = 25.0
+	spawn_spd = 0.5
+	spawn_duration = 30.0
+	wave_cooldown = 30.0
 
 func level_9():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
 	types = ["necromancer", "big_demon", "chort"]
-	spawn_spd = 0.4
-	spawn_duration = 25.0
+	spawn_spd = 0.6
+	spawn_duration = 35.0
 	wave_cooldown = 30.0
 
 func level_10():
 	types = ["ogre", "necromancer", "big_demon", "chort"]
-	spawn_spd = 1.0
-	spawn_duration = 30.0
+	spawn_spd = 0.8
+	spawn_duration = 50.0
 	wave_cooldown = 10.0
 
 func _on_Spawn_timeout() -> void:

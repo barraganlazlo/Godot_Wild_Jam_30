@@ -76,4 +76,4 @@ func _on_AnimatedSprite_frame_changed() -> void:
 	var audio = SOUND_AUTO_DELETE.instance()
 	add_child(audio)
 	var select_clip = randi() % footsteps.size()
-	audio.play_sound(footsteps[select_clip], -10, -10)
+	audio.play_sound(footsteps[select_clip], -10, 0.8)

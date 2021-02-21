@@ -5,7 +5,7 @@ onready var tween_timer: Timer = $Tween/TweenTimer
 onready var flash_timer: Timer = $FlashTimer
 
 onready var time_till_flash: float = 5.0
-onready var time_till_delete: float = 3.0
+onready var time_till_delete: float = 5.0
 onready var state = IDLE
 onready var tween_up: bool = true
 enum {
