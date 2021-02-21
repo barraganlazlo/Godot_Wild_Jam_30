@@ -7,33 +7,50 @@ signal heart_beat()
 # Fps = 60
 # Beat_rate / 60 = # of seconds per beat
 enum BEAT_RATE {
-	SLOW = 180, # 3 seconds
-	SLOW_MEDIUM = 150, # 2.5 seconds
-	MEDIUM = 120, # 2.0 seconds
-	MEDIUM_FAST = 90, # 1.5 second
-	FAST = 60, # 1 second
+	SLOW = 100, # 3 seconds
+	SLOW_MEDIUM = 80, # 2.5 seconds
+	MEDIUM = 60, # 2.0 seconds
+	MEDIUM_FAST = 40, # 1.5 second
+	FAST = 20, # 1 second
 }
 
 enum STATE {
 	IDLE,
 	BEAT,
 }
-
-onready var beat_rate: int = BEAT_RATE.MEDIUM_FAST setget set_beat_rate
+onready var real_hp: int = 5
+onready var beat_rate: int = BEAT_RATE.SLOW setget set_beat_rate
 onready var state: int = STATE.IDLE
 onready var tweening_up: bool = true
 onready var big_heart_beat_push: bool = false
 onready var main = get_tree().get_nodes_in_group("main").front()
-
+onready var invincible: bool = false
 func _ready() -> void:
 	add_to_group("Heart_Building")
-	remove_from_group("Building")
-	hp = 100
+	hp = 1000000
 	tween_heart()
 	set_beat_rate(beat_rate)
 
 func hp_reduced()->void:
+	if invincible:
+		return
 	.hp_reduced()
+	real_hp -= 1
+	if real_hp <= 0:
+		hp_depleted()
+		return
+	if beat_rate == BEAT_RATE.SLOW:
+		beat_rate = BEAT_RATE.SLOW_MEDIUM
+	elif beat_rate == BEAT_RATE.SLOW_MEDIUM:
+		beat_rate = BEAT_RATE.MEDIUM
+	elif beat_rate == BEAT_RATE.MEDIUM:
+		beat_rate = BEAT_RATE.MEDIUM_FAST
+	else: 
+		beat_rate = BEAT_RATE.FAST
+	
+	$Invince.wait_time = beat_rate / 60.0
+	$Invince.start()
+	invincible = true
 	big_heart_beat_push = true
 
 func hp_depleted()->void:
@@ -118,3 +135,7 @@ func tween_heart()-> void:
 
 func _on_Tween_tween_all_completed() -> void:
 	tween_heart()
+
+
+func _on_Invince_timeout() -> void:
+	invincible = false

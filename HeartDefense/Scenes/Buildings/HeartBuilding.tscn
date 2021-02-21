@@ -128,6 +128,9 @@ bus = "sound_effects"
 
 [node name="HeartBeatWavePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = 5.0
-bus = "sound_effects"
+volume_db = 10.0
+
+[node name="Invince" type="Timer" parent="."]
+one_shot = true
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="Invince" to="." method="_on_Invince_timeout"]
