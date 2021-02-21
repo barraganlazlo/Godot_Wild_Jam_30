@@ -14,6 +14,11 @@ enum {
 	DELETE
 }
 
+var pick_up_sound :=preload("res://Sounds/pick up coin.wav")
+
+const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
+
+
 func init() -> void:
 	life_timer.wait_time = time_till_flash
 	life_timer.start()
@@ -60,4 +65,8 @@ func _on_FlashTimer_timeout() -> void:
 
 func _on_Coin_body_entered(body) -> void:
 	Global.update_coins(1)
+	var instance=SOUND_AUTO_DELETE.instance()
+	instance.global_position=global_position
+	get_tree().get_root().add_child(instance)
+	instance.play_sound(pick_up_sound)
 	queue_free()

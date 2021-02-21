@@ -11,4 +11,5 @@ const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
 func _ready():
 	var instance=SOUND_AUTO_DELETE.instance()
 	get_tree().get_root().add_child(instance)
+	instance.global_position=global_position
 	instance.play_sound(impacts[randi() % impacts.size()])
