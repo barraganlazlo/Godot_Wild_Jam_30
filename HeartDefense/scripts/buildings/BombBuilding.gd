@@ -7,6 +7,10 @@ onready var ysort = get_tree().get_nodes_in_group("ysort").front()
 onready var proj_spd = 10
 onready var proj_damage = 2
 
+
+
+const AutoDeleteSong =preload("res://Scenes/SoundAutoDelete.tscn")
+
 func _ready():
 	hp = Global.building_types["bomb"][0]
 	proj_damage = Global.building_types["bomb"][1]
@@ -35,10 +39,9 @@ func create_proj(target_pos):
 	bomb.global_position=attach.global_position
 	bomb.launch(target_pos, proj_spd, proj_damage)
 	
-	inst = load("res://Scenes/SoundAutoDelete.tscn")
-	var sound = inst.instance()
+	var sound = AutoDeleteSong.instance()
 	ysort.add_child(sound)
-	inst.play_sound("res://Sounds/tomb.wav", 3.0, 0.7)
+	sound.play_sound(load("res://Sounds/tomb.wav"), 3.0, 0.7)
 
 
 func _on_Area2D_body_entered(body) -> void:

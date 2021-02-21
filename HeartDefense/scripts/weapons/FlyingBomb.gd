@@ -9,6 +9,11 @@ onready var target_pos: Vector2 = Vector2.ZERO
 onready var tween : Tween 
 onready var heart_build_pos = get_tree().get_nodes_in_group("Heart_Building").front().global_position
 
+var bomb_sound_effect :=preload("res://Sounds/bomb.wav")
+
+const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
+
+
 func _ready() -> void:
 	$CollisionShape2D.disabled = true
 
@@ -65,6 +70,11 @@ func set_airborne(_coming_up := true, _distance := 0.0) -> void:
 		tween_speed_selected, tween_trans, Tween.EASE_OUT)
 	tween.start()
 
+func play_sound(s,volume=0):
+	var sound=SOUND_AUTO_DELETE.instance()
+	get_tree().get_root().add_child(sound)
+	sound.global_position=global_position
+	sound.play_sound(s, volume)
 
 func tween_completed():
 	if coming_up:
@@ -85,6 +95,7 @@ func _on_FlyingBomb_body_entered(body) -> void:
 func _on_Delete_timeout() -> void:
 	var inst = load("res://Scenes/Particles/FlyingBomb.tscn")
 	var particle = inst.instance()
+	play_sound(bomb_sound_effect)
 	get_tree().get_nodes_in_group("ysort").front().add_child(particle)
 	particle.global_position = global_position
 	queue_free()
