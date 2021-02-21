@@ -33,16 +33,16 @@ enum ENEMY {
 onready var enemy_types: Dictionary = {
 	# [ Move spd , Animation spd , Hp , Money_amount, Money_chance, knockback-res]
 	"muddy": 		[10, 0.50, 5, 1, 0.6, 0.7],
-	"skelet": 		[20, 0.75, 2, 1, 0.7, 0.9],
-	"goblin": 		[25, 1.00, 2, 1, 0.8, 0.8],
-	"orc_shaman": 	[20, 0.75, 5, 1, 0.6, 0.8],
-	"zombie": 		[25, 0.75, 8, 1, 0.8, 0.5],
-	"big_zombie": 	[15, 0.50, 25, 2, 0.6, 0.2],
-	"swampy": 		[30, 0.75, 20, 2, 0.4, 0.1],
-	"chort":		[40, 1.25, 18, 2, 0.5, 0.6],
-	"big_demon": 	[80, 1.75, 8, 1, 0.8, 1.0],
-	"necromancer":	[30, 1.00, 10, 2, 0.5, 0.9],
-	"ogre": 		[5, 0.25, 50, 3, 0.5, 0.0],
+	"skelet": 		[35, 0.75, 2, 1, 0.7, 0.9],
+	"goblin": 		[25, 1.00, 2, 1, 0.8, 0.7],
+	"orc_shaman": 	[20, 0.75, 7, 2, 0.6, 0.6],
+	"zombie": 		[30, 0.75, 8, 1, 0.8, 0.4],
+	"big_zombie": 	[20, 0.50, 25, 2, 0.6, 0.1],
+	"swampy": 		[30, 0.75, 20, 2, 0.4, 0.25],
+	"chort":		[40, 1.25, 20, 2, 0.5, 0.6],
+	"big_demon": 	[80, 1.75, 7, 2, 0.8, 0.9],
+	"necromancer":	[30, 1.00, 15, 2, 0.5, 0.8],
+	"ogre": 		[5, 0.25, 50, 3, 0.5, 0.1],
 }
 
 enum BUILDING {
@@ -54,7 +54,7 @@ enum BUILDING {
 onready var building_types: Dictionary = {
 	# [ Hp , Damage , proj_spd, cost]
 	"spear": 	[2, 2, 650, 3],
-	"wall":  	[5, 0 , 0, 1],
+	"wall":  	[7, 0 , 0, 1],
 	"bomb": 	[2, 1, 110, 3],
 }
 onready var og_building_types: Dictionary = building_types.duplicate(true)

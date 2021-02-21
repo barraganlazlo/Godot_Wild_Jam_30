@@ -62,7 +62,26 @@ margin_bottom = 360.0
 rect_min_size = Vector2( 180, 360 )
 mouse_filter = 2
 
+[node name="Buffer4" type="Label" parent="Camera2D/VBoxContainer/VBoxContainer"]
+margin_right = 180.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartAttack" type="Label" parent="Camera2D/VBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 180.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 0.180392, 0.180392, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+text = "Heart Attack"
+align = 1
+
 [node name="Buffer" type="Label" parent="Camera2D/VBoxContainer/VBoxContainer"]
+margin_top = 50.0
 margin_right = 180.0
 margin_bottom = 252.0
 size_flags_vertical = 7

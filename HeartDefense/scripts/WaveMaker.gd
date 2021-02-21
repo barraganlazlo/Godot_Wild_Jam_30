@@ -75,19 +75,19 @@ func level_0():
 	types = []
 	spawn_spd = 100.0
 	spawn_duration = 1.0
-	wave_cooldown = 1.0
+	wave_cooldown = 15.0
 
 func level_1():
 	types = ["muddy"]
 	spawn_spd = 1.0
 	spawn_duration = 15.0
-	wave_cooldown = 8.0
+	wave_cooldown = 10.0
 
 func level_2():
 	types = ["muddy", "skelet"]
 	spawn_spd = 1.0
 	spawn_duration = 20.0
-	wave_cooldown = 10.0
+	wave_cooldown = 15.0
 
 func level_3():
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
@@ -100,14 +100,14 @@ func level_4():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	types = [ "goblin", "orc_shaman", "skelet"]
-	spawn_spd = .75
-	spawn_duration = 25.0
+	spawn_spd = .65
+	spawn_duration = 30.0
 	wave_cooldown = 20.0
 
 func level_5():
 	types = ["orc_shaman", "zombie", "big_zombie"]
-	spawn_spd = 0.65
-	spawn_duration = 25.0
+	spawn_spd = 0.6
+	spawn_duration = 30.0
 	wave_cooldown = 25.0
 
 func level_6():
@@ -116,14 +116,14 @@ func level_6():
 	types = [ "zombie", "big_zombie", "swampy"]
 	spawn_spd = 0.5
 	spawn_duration = 30.0
-	wave_cooldown = 25.0
+	wave_cooldown = 30.0
 
 func level_7():
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	types = ["big_zombie", "swampy", "chort"]
 	spawn_spd = 0.5
 	spawn_duration = 30.0
-	wave_cooldown = 25.0
+	wave_cooldown = 30.0
 
 func level_8():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
@@ -143,7 +143,7 @@ func level_9():
 
 func level_10():
 	types = ["ogre", "necromancer", "big_demon", "chort"]
-	spawn_spd = 0.7
+	spawn_spd = 0.6
 	spawn_duration = 50.0
 	wave_cooldown = 10.0
 

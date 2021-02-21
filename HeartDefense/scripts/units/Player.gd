@@ -18,7 +18,7 @@ const BUILD_WHEEL :=preload("res://Scenes/Gui/BuildWheel.tscn")
 func _ready():
 	._ready()
 	add_to_group("Player")
-	init("elf_m", 130.0, 2.0)
+	init("elf_m", 130.0, 2.0, 50)
 
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25, hp = 10):
 	.init(sprite_string, spd, anim_spd, hp)
@@ -30,6 +30,10 @@ onready var weapons :=[
 	$AnimatedSprite/Weapons/Bow
 ]
 var current_weapon:=WEAPON_BOW
+
+func hp_depleted():
+	.hp_depleted()
+	get_tree().get_nodes_in_group("main").front().game_lose()
 
 # When right mouse is clicked , change tool to hammer and open build wheel
 # When done placing buildings, (in hammer code) return to bow
@@ -66,7 +70,6 @@ func select(target_weapon)-> void:
 
 
 func _on_AnimatedSprite_frame_changed() -> void:
-	print("changed")
 	if animSprite.animation != "Run":
 		return
 	

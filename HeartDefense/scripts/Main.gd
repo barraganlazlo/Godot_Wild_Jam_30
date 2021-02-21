@@ -78,6 +78,7 @@ func create_enemy(room_pos: Vector2, type: String):
 	
 
 func game_won():
+	game_over = false
 	var heart_b = get_tree().get_nodes_in_group("heart_building").front()
 	var heart_s = heart_b.get_node("Heart")
 	
@@ -92,6 +93,7 @@ func game_won():
 	$Tween.start()
 
 func game_lose():
+	game_over = true
 	$Tween.stop_all()
 	var spd = 0.5
 	var heart_b = get_tree().get_nodes_in_group("heart_building").front()
