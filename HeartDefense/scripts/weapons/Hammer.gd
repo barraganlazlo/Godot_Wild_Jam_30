@@ -19,7 +19,7 @@ const BUILD_RANGE := 100
 
 var last_target_map_pos:=Vector2(-1,-1)
 
-var hammer_sound_effect:=preload("res://Sounds/shorter hammer .wav")
+var hammer_sound_effect:=preload("res://Sounds/build.wav")
 
 
 #BUILDINGS
