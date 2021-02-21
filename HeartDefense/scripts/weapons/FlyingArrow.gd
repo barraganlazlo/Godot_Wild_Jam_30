@@ -4,6 +4,15 @@ const PLANTED_ARROW :=preload("res://Scenes/Weapons/Arrow/PlantedArrow.tscn")
 
 onready var delete_timer=$DeleteTimer
 
+var bong_sound_effects :=[
+	preload("res://Sounds/bong.wav"),
+	preload("res://Sounds/bong2.wav"),
+	preload("res://Sounds/bong3.wav"),
+	preload("res://Sounds/bong4.wav")
+]
+
+const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
+
 var velocity := Vector2(0,0)
 var gravity:=0.005
 var damage: int = 1
@@ -31,13 +40,18 @@ func _physics_process(delta:float)->void:
 			velocity*= 0.2 +rand_range(-0.025,0.025)
 			delete_timer.start()
 			collision_mask=0
+			play_sound(bong_sound_effects[randi()%bong_sound_effects.size()])
 
 func launch(init_velocity : Vector2, proj_damage)->void:
 	damage = proj_damage
 	velocity=init_velocity
 	set_physics_process(true)
 	
-
+func play_sound(s):
+	var sound=SOUND_AUTO_DELETE.instance()
+	get_tree().get_root().add_child(sound)
+	sound.global_position=global_position
+	sound.play_sound(s)
 
 func _on_Timer_timeout():
 	pass # Replace with function body.
