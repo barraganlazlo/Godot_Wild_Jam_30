@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="HeartDefense"
 run/main_scene="res://Scenes/Gui/Title.tscn"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [autoload]
