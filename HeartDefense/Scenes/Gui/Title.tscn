@@ -134,6 +134,7 @@ margin_top = 292.0
 margin_right = 180.0
 margin_bottom = 324.0
 rect_min_size = Vector2( 0, 32 )
+rect_pivot_offset = Vector2( 90, 16 )
 texture = ExtResource( 7 )
 patch_margin_left = 5
 patch_margin_top = 5
@@ -289,7 +290,7 @@ size_flags_horizontal = 3
 min_value = -36.0
 max_value = 0.0
 step = 0.5
-value = -2.5
+value = -8.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -411,7 +412,6 @@ bus = "sound_effects"
 [connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_Master_volume_changed"]
 [connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_Music_volume_changed"]
 [connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer3/HSlider" to="." method="_on_Sound_effects_volume_changed"]
-[connection signal="button_down" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="pressed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok/TextureButton" to="." method="_on_Volume_OK_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
