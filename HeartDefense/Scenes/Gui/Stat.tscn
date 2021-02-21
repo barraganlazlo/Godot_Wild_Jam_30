@@ -13,7 +13,6 @@ __meta__ = {
 
 [node name="Buffer1" type="Label" parent="."]
 margin_top = 13.0
-margin_right = 4.0
 margin_bottom = 27.0
 
 [node name="Stat" type="Label" parent="."]

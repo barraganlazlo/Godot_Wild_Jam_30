@@ -9,16 +9,7 @@ onready var player:= $YSort/Player
 onready var camera:= $YSort/Camera2D
 export var center_pos: Vector2 = Vector2(0,0)
 onready var game_over: bool = false
-var footsteps: Array =[
-	preload("res://Sounds/footstep 1.wav"),
-	preload("res://Sounds/footstep 2.wav"),
-	preload("res://Sounds/footstep 3.wav"),
-	preload("res://Sounds/footstep 4.wav"),
-	preload("res://Sounds/footstep 5.wav"),
-	preload("res://Sounds/footstep 6.wav"),
-	preload("res://Sounds/footstep 7.wav"),
-	preload("res://Sounds/footstep 8.wav")
-]
+
 
 const MIN_MAP_POS := Vector2(1,2)
 const MAX_MAP_POS := Vector2(38,21)
@@ -78,10 +69,10 @@ func create_enemy(room_pos: Vector2, type: String):
 	inst.global_position = room_pos
 	inst.init(type, move_spd, anim_spd, hp)
 	
-	var dust = load("res://Scenes/Particles/DustBomb.tscn")
-	inst = dust.instance()
-	$YSort.add_child(inst)
-	inst.global_position = room_pos
+#	var dust = load("res://Scenes/Particles/DustBomb.tscn")
+#	inst = dust.instance()
+#	$YSort.add_child(inst)
+#	inst.global_position = room_pos
 	
 
 func game_won():

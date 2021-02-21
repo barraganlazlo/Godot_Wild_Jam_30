@@ -225,7 +225,7 @@ collision_layer = 2147483656
 
 [node name="PreviewCollision" type="Area2D" parent="YSort/Preview"]
 collision_layer = 0
-collision_mask = 2147483662
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Preview/PreviewCollision"]
 shape = SubResource( 3 )

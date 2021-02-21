@@ -5,7 +5,7 @@
 [ext_resource path="res://Sprites/projectiles/proj_bomb2.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 32.0
+radius = 40.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
