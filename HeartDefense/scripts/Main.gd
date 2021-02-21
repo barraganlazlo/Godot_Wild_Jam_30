@@ -11,8 +11,8 @@ export var center_pos: Vector2 = Vector2(0,0)
 onready var game_over: bool = false
 
 
-const MIN_MAP_POS := Vector2(1,2)
-const MAX_MAP_POS := Vector2(38,21)
+const MIN_MAP_POS := Vector2(1,-6)
+const MAX_MAP_POS := Vector2(38,29)
 
 func _ready() -> void: 
 	$WaveMaker.bottom_right = Vector2(room_pixel_size.x-64, room_pixel_size.y-64)
