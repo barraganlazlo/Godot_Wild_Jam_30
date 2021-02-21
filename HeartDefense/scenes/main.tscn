@@ -219,7 +219,6 @@ __meta__ = {
 
 [node name="HeartBuilding" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 320, 176 )
-collision_layer = 2147483656
 
 [node name="Preview" type="Node2D" parent="YSort"]
 
