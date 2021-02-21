@@ -15,7 +15,6 @@ onready var buyable_chance = 20.0
 onready var main = get_parent()
 onready var top_left: =Vector2(64,64)
 onready var bottom_right: =Vector2(64,64)
-onready var max_spawn_rect_size: Vector2 = bottom_right - top_left
 
 
 # How quick things spawn in wave
@@ -61,7 +60,7 @@ func init_buyable_timer():
 	#Per wave, spawns num of buyables
 	buyable.wait_time = rng.randf_range(buyable_chance/4,buyable_chance)
 	buyable.start()
-	buyable_cost += rng.randi_range(2,4)
+	buyable_cost += rng.randi_range(1,4)
 
 #	"muddy": 		[15, 0.75, 5, 1, 0.2],
 #	"goblin": 		[50, 1.25, 3, 1, 0.3],
@@ -80,7 +79,7 @@ func level_0():
 
 func level_1():
 	types = ["muddy"]
-	spawn_spd = 1.5
+	spawn_spd = 1.0
 	spawn_duration = 15.0
 	wave_cooldown = 8.0
 
@@ -160,10 +159,13 @@ func within_rand_rect():
 	var spawn_pos: Vector2 = Vector2.ZERO
 	var random_spawn = randi() % 2
 	var offset: Vector2 = Vector2.ZERO
-	if randi() % 2 == 0:
-		offset = Vector2(randi() % (int(max_spawn_rect_size.x) + 1), 0)
+	var random_axis = randi() % 2
+	
+	if random_axis == 0:
+		offset.x = float(randi() % 480 + 1)
 	else:
-		offset = Vector2(0, randi() % (int(max_spawn_rect_size.y) + 1))
+		offset.y = float(randi() % 480 + 1)
+	
 	if random_spawn == 0:
 		spawn_pos = top_left
 	else:
@@ -193,7 +195,7 @@ func stop_waves():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	for i in enemies:
 		i.sleep(100.0)
-	destroyEnemy.wait_time = 0.15
+	destroyEnemy.wait_time = 7.0 / float(enemies.size())
 	destroyEnemy.start()
 
 func _on_Cooldown_timeout() -> void:
