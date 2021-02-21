@@ -37,7 +37,7 @@ func create_proj(target_pos):
 	
 	inst = load("res://Scenes/SoundAutoDelete.tscn")
 	var sound = inst.instance()
-	ysort.add_child(inst)
+	ysort.add_child(sound)
 	inst.play_sound("res://Sounds/tomb.wav", 3.0, 0.7)
 
 

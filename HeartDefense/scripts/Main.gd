@@ -1,7 +1,8 @@
 extends Node2D
 
 onready var rng = RandomNumberGenerator.new()
-onready var room_pixel_size: Vector2 = Vector2(640.0,360.0)
+onready var bottom_right: Vector2 = Vector2(640.0, 640.0-128.0)
+onready var top_left: Vector2 = Vector2(0.0, -128.0)
 
 onready var ysort:= $YSort
 onready var heart_building:= $YSort/HeartBuilding
@@ -15,8 +16,9 @@ const MIN_MAP_POS := Vector2(1,-6)
 const MAX_MAP_POS := Vector2(38,29)
 
 func _ready() -> void: 
-	$WaveMaker.bottom_right = Vector2(room_pixel_size.x-64, room_pixel_size.y-64)
-	$WaveMaker.max_spawn_rect_size = $WaveMaker.top_left - $WaveMaker.bottom_right
+	var buffer = 80
+	$WaveMaker.bottom_right = bottom_right - Vector2(buffer,buffer)
+	$WaveMaker.top_left = top_left + Vector2(buffer,buffer)
 	rng.randomize()
 	heart_building.connect("anticipate_heart_beat", self, "anticipate_heart_beat")
 	heart_building.connect("heart_beat", self, "heart_beat")
