@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/title/TitleBackground.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/title/TitleForeground.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Sprites/gui/NineRect4.png" type="Texture" id=8]
 [ext_resource path="res://Gui/BitPotion32.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Gui/Theme.tres" type="Theme" id=10]
+[ext_resource path="res://scripts/gui/PlayButton.gd" type="Script" id=11]
+[ext_resource path="res://Sounds/button noise.wav" type="AudioStream" id=12]
 
 [node name="Title" type="Node2D"]
 script = ExtResource( 6 )
@@ -137,6 +139,7 @@ patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
+script = ExtResource( 11 )
 
 [node name="GreenNine" type="NinePatchRect" parent="Camera2D/VBoxContainer/VBoxContainer/BrownNine"]
 anchor_right = 1.0

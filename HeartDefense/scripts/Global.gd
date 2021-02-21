@@ -2,6 +2,7 @@ extends Node
 
 signal update_coins(value)
 
+onready var level_stats: Array = [0,0,0,0,0]
 
 enum STATS {
 	MONSTERS_KILLED,
