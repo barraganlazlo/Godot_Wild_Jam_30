@@ -52,13 +52,3 @@ func select(target_weapon)-> void:
 	weapons[target_weapon].activate()
 	weapons[current_weapon].desactivate()
 	current_weapon=target_weapon
-
-func show_building_range(limit):
-	building_limit = limit
-	update()
-
-func _draw():
-	var player_pos: Vector2 = global_position
-	var br = building_limit
-	var new_vec = (player_pos.snapped(Vector2(16,16)))
-	draw_rect(Rect2(-br/2, - br/2, br, br), Color.aqua, false)

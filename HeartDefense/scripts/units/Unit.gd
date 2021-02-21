@@ -22,9 +22,6 @@ var hp: int = 10 setget set_hp
 
 func take_damage(value: int, knockback: Vector2)-> void:
 	set_hp(hp-value)
-	velocity += knockback
-
-	
 
 func set_hp(value: int):
 	hp = value

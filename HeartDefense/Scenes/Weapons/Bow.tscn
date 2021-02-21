@@ -65,8 +65,9 @@ tracks/1/keys = {
 
 [node name="Bow" type="Sprite"]
 position = Vector2( 8.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
+can_shoot = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

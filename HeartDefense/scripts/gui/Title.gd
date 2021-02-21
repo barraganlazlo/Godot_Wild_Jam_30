@@ -43,4 +43,4 @@ func _on_Timer_timeout() -> void:
 
 func _on_Tween_tween_all_completed() -> void:
 	print("going to main")
-	Global.retry()
+	Global.go_to_scene("res://Scenes/main.tscn")

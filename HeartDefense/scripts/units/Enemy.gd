@@ -9,8 +9,12 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	destination = find_nearest()
 	sleep(0.4)
 	if type == "orc_shaman":
-		$Special.wait_time = 3.0
+		$Special.wait_time = 5.0
 		$Special.start()
+
+func take_damage(value: int, knockback: Vector2)-> void:
+	.take_damage(value, knockback)
+	velocity += knockback * Global.enemy_types[type][Global.ENEMY.KNOCKBACK_RES]
 
 func sleep(time):
 	set_physics_process(false)

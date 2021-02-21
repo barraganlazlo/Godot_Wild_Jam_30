@@ -16,8 +16,8 @@ var bow_release_sounds := [
 func _process(_delta:float)-> void:
 	if !is_active :
 		return
-
 	if can_shoot && Input.is_action_pressed ("shoot") :
+		animation_player.playback_speed = Global.player_type[Global.PLAYER.ATTACK_SPEED]
 		audio_stream_player.play()
 		audio_stream_player.stream=bow_release_sounds[randi()%bow_release_sounds.size()]
 		animation_player.play("Shoot")

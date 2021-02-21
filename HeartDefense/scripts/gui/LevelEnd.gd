@@ -16,6 +16,7 @@ func _ready() -> void:
 func init(results:String = "Won", new_level_stats: Array = []):
 	level_stats = new_level_stats
 	level_result = results
+	result_node.text = level_result
 	
 	var r_modulate: Color
 	if level_result == "Won":
