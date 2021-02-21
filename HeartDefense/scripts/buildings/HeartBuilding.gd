@@ -30,6 +30,7 @@ func _ready() -> void:
 	hp = 1000000
 	tween_heart()
 	set_beat_rate(beat_rate)
+	remove_from_group("Building")
 
 func hp_reduced()->void:
 	if invincible:
