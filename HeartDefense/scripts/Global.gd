@@ -2,13 +2,14 @@ extends Node
 
 signal update_coins(value)
 
-onready var level_stats: Array = [0,0,0,0]
+onready var level_stats: Array = [0,0,0,0,0]
 
 enum STATS {
 	MONSTERS_KILLED,
 	BUILDINGS_BUILT,
 	ARROWS_SHOT,
 	HEART_BEATS,
+	MONEY_COLLECTED,
 	limit,
 }
 
@@ -18,7 +19,7 @@ enum PLAYER {
 	ATTACK_SPEED,
 }
 # [ Damage , Money ]
-onready var player_type: Array = [1, 10, 1.0]
+onready var player_type: Array = [1, 0, 1.0]
 onready var og_player_type: Array = player_type.duplicate(true)
 enum ENEMY {
 	SPD,

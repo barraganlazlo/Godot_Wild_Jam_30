@@ -11,13 +11,15 @@ func init(stat_index, stats_node_height):
 	
 	var r_modulate: Color
 	if stat_index == Global.STATS.MONSTERS_KILLED:
-		r_modulate = Color(0.4, 0.9, 0.5, 1.0)
+		r_modulate = Color(0.9, 0.9, 0.9, 1.0) # white
 	elif stat_index == Global.STATS.BUILDINGS_BUILT:
-		r_modulate = Color(0.0, 0.9, 0.7, 1.0)
+		r_modulate = Color(0.1, 0.4, 1.0, 1.0) # Cyan
 	elif stat_index == Global.STATS.ARROWS_SHOT:
-		r_modulate = Color(0.8, 0.75, 0.1, 1.0)
+		r_modulate = Color(0.2, 1.0, 0.3, 1.0) # green
 	elif stat_index == Global.STATS.HEART_BEATS:
-		r_modulate = Color(1.0, 0.3, 0.4, 1.0)
+		r_modulate = Color(1.0, 0.3, 0.4, 1.0) # red
+	elif stat_index == Global.STATS.MONEY_COLLECTED:
+		r_modulate = Color(1.0, 1.0, 0.3, 1.0) # yellow
 	
 	var spd = 2.0
 	$Tween.interpolate_property($Stat, "custom_colors/font_color", 
