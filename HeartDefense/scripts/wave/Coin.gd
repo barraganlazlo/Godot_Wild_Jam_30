@@ -68,5 +68,5 @@ func _on_Coin_body_entered(body) -> void:
 	var instance=SOUND_AUTO_DELETE.instance()
 	get_tree().get_root().add_child(instance)
 	instance.global_position=global_position
-	instance.play_sound(pick_up_sound, -12.0)
+	instance.play_sound(pick_up_sound, -8.0)
 	queue_free()
