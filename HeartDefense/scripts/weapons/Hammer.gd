@@ -19,10 +19,7 @@ const BUILD_RANGE := 100
 
 var last_target_map_pos:=Vector2(-1,-1)
 
-var hammer_sound_effects:=[
-	preload("res://Sounds/Hammer 1.wav"),
-	preload("res://Sounds/Hammer 2.wav")
-]
+var hammer_sound_effect:=preload("res://Sounds/shorter hammer .wav")
 
 
 #BUILDINGS
@@ -73,8 +70,8 @@ func _process(_delta:float)-> void:
 	var target_map_pos=built_walls.world_to_map(target_world_pos)
 	
 	#ensure that target_map_pos is inside the map
-	target_map_pos.x=clamp(target_map_pos.x, built_walls.MIN_MAP_POS.x, built_walls.MAX_MAP_POS.x)
-	target_map_pos.y=clamp(target_map_pos.y, built_walls.MIN_MAP_POS.y, built_walls.MAX_MAP_POS.y)
+	target_map_pos.x=clamp(target_map_pos.x, main.MIN_MAP_POS.x, main.MAX_MAP_POS.x)
+	target_map_pos.y=clamp(target_map_pos.y, main.MIN_MAP_POS.y, main.MAX_MAP_POS.y)
 	
 	
 	#update the preview_tile 
@@ -131,11 +128,11 @@ func build(target_map_pos:Vector2)->void :
 	animation_player.play("Build")
 	var player_money: int = Global.player_type[Global.PLAYER.MONEY]
 	var cost: int
-	if current_building == 0:
+	if current_building == WALL:
 		cost = Global.building_types["wall"][Global.BUILDING.COST]
-	elif current_building == 1:
+	elif current_building == SPEAR:
 		cost = Global.building_types["spear"][Global.BUILDING.COST]
-	elif current_building == 2:
+	elif current_building == BOMB:
 		cost = Global.building_types["bomb"][Global.BUILDING.COST]
 	
 	if cost > player_money:
@@ -177,7 +174,7 @@ func desactivate()->void:
 	preview.visible=false
 
 func play_build_sound():
-	$AudioStreamPlayer2D.stream=hammer_sound_effects[randi()%hammer_sound_effects.size()]
+	$AudioStreamPlayer2D.stream=hammer_sound_effect
 	$AudioStreamPlayer2D.play()
 
 

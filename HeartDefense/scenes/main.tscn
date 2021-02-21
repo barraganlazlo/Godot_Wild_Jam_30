@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Buildings/Previews/PreviewBombBuilding.tscn" type="PackedScene" id=2]
@@ -18,6 +18,29 @@
 [ext_resource path="res://Gui/Theme.tres" type="Theme" id=16]
 [ext_resource path="res://Sprites/gui/CoinTally.png" type="Texture" id=17]
 [ext_resource path="res://scripts/gui/CoinTally.gd" type="Script" id=18]
+[ext_resource path="res://scripts/PathFindingMap.gd" type="Script" id=19]
+[ext_resource path="res://Sprites/gui/NineRect3.png" type="Texture" id=20]
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="TileSet" id=6]
+0/name = "NineRect3.png 0"
+0/texture = ExtResource( 20 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/navigation = SubResource( 7 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.9, 7.9 )
@@ -135,6 +158,15 @@ collision_layer = 0
 collision_mask = 0
 format = 1
 script = ExtResource( 12 )
+
+[node name="PathFindingMap" type="TileMap" parent="YSort"]
+visible = false
+tile_set = SubResource( 6 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+script = ExtResource( 19 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 287.765, 119.994 )

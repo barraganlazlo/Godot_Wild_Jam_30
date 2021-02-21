@@ -19,6 +19,10 @@ var footsteps: Array =[
 	preload("res://Sounds/footstep 7.wav"),
 	preload("res://Sounds/footstep 8.wav")
 ]
+
+const MIN_MAP_POS := Vector2(1,2)
+const MAX_MAP_POS := Vector2(38,21)
+
 func _ready() -> void: 
 	$WaveMaker.bottom_right = Vector2(room_pixel_size.x-64, room_pixel_size.y-64)
 	$WaveMaker.max_spawn_rect_size = $WaveMaker.top_left - $WaveMaker.bottom_right

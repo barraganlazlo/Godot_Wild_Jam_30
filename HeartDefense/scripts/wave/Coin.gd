@@ -69,5 +69,5 @@ func _on_Coin_body_entered(body) -> void:
 	get_tree().get_root().add_child(instance)
 	instance.global_position=global_position
 	instance.play_sound(pick_up_sound)
-	instance.volume_db=-5
+	instance.volume_db=-6
 	queue_free()
