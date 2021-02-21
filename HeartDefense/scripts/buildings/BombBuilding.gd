@@ -34,6 +34,11 @@ func create_proj(target_pos):
 	ysort.add_child(bomb)
 	bomb.global_position=attach.global_position
 	bomb.launch(target_pos, proj_spd, proj_damage)
+	
+	inst = load("res://Scenes/SoundAutoDelete.tscn")
+	var sound = inst.instance()
+	ysort.add_child(inst)
+	inst.play_sound("res://Sounds/tomb.wav", 3.0, 0.7)
 
 
 func _on_Area2D_body_entered(body) -> void:
