@@ -121,13 +121,9 @@ func game_lose():
 	$Tween.start()
 
 func _on_Tween_tween_all_completed() -> void:
+	$WaveMaker.stop_waves()
 	Engine.time_scale = 1.0
-	print("freeze")
-	for i in get_tree().get_nodes_in_group("Enemies"):
-		i.set_animation_spd(0.0)
-		i.set_physics_process(false)
-		i.set_process(false)
-		
+	Global.get_node("PassiveTimer").stop()
 	var player = get_tree().get_nodes_in_group("Player").front()
 	if player != null:
 		player.set_animation_spd(0.0)

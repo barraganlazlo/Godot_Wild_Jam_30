@@ -29,7 +29,7 @@ func _on_TextureButton_button_down() -> void:
 func _on_TextureButton_button_up() -> void:
 	green_nine.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
 	if !fading:
-		$AudioStreamPlayer.play()
+		#$AudioStreamPlayer.play()
 		fading = true
 		$Timer.wait_time = 0.2
 		$Timer.start()

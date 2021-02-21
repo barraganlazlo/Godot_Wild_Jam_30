@@ -59,6 +59,7 @@ onready var passive_money: int = 1
 
 func _ready() -> void:
 	var timer = Timer.new()
+	timer.name = "PassiveTimer"
 	add_child(timer)
 	timer.connect("timeout", self, "passive_income")
 	timer.wait_time = 2.0

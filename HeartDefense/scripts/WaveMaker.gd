@@ -10,7 +10,7 @@ onready var buyable = $Buyable
 onready var destroyEnemy = $DestroyEnemy
 
 onready var buyable_cost = 2
-onready var buyable_chance = 20.0
+onready var buyable_chance = 25.0
 
 onready var main = get_parent()
 onready var top_left: =Vector2(64,64)
@@ -51,16 +51,17 @@ func init(wave_num: int = 1):
 	duration.start()
 	wave = wave_num
 	if wave == 4:
-		buyable_chance = 15
+		buyable_chance = 20
 	elif wave == 8:
-		buyable_chance = 10
+		buyable_chance = 15
+
 
 
 func init_buyable_timer():
 	#Per wave, spawns num of buyables
-	buyable.wait_time = rng.randf_range(0,buyable_chance)
+	buyable.wait_time = rng.randf_range(buyable_chance/4,buyable_chance)
 	buyable.start()
-	buyable_cost += rng.randi_range(3,5)
+	buyable_cost += rng.randi_range(2,4)
 
 #	"muddy": 		[15, 0.75, 5, 1, 0.2],
 #	"goblin": 		[50, 1.25, 3, 1, 0.3],
@@ -182,14 +183,21 @@ func _on_Duration_timeout() -> void:
 		var waveTimer = inst.instance()
 		get_tree().get_nodes_in_group("camera").front().add_child(waveTimer)
 		waveTimer.init(wave_cooldown, wave)
-		waveTimer.rect_position += Vector2(0,-64)
+		waveTimer.rect_position += Vector2(0,-96)
 	else:
 		main.game_won()
-		var enemies = get_tree().get_nodes_in_group("Enemy")
-		for i in enemies:
-			i.sleep(100.0)
-		destroyEnemy.wait_time = 0.15
-		destroyEnemy.start()
+		stop_waves()
+
+func stop_waves():
+	cooldown.stop()
+	spawn.stop()
+	duration.stop()
+	buyable.stop()
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	for i in enemies:
+		i.sleep(100.0)
+	destroyEnemy.wait_time = 0.15
+	destroyEnemy.start()
 
 func _on_Cooldown_timeout() -> void:
 	init(wave + 1)
@@ -199,7 +207,6 @@ func _on_Buyable_timeout() -> void:
 	var type: int = rng.randi_range(0,4)
 	create_buyable(spawn_pos, type)
 	init_buyable_timer()
-
 
 func create_buyable(room_pos: Vector2, type):
 	var inst = load("res://Scenes/Wave/Buyable.tscn")

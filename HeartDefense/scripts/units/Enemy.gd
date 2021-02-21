@@ -94,8 +94,7 @@ func play_sound(s,volume=0):
 	var sound=SOUND_AUTO_DELETE.instance()
 	get_tree().get_root().add_child(sound)
 	sound.global_position=global_position
-	sound.volume_db=volume
-	sound.play_sound(s)
+	sound.play_sound(s, volume)
 
 func _on_Special_timeout() -> void:
 	if type == "orc_shaman":

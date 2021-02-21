@@ -17,12 +17,11 @@ func init(drop_speed: float, new_type):
 	yield(get_tree().create_timer(0.5), "timeout")
 	play_sound(landing_sound_effects)
 	
-func play_sound(s,volume=0):
+func play_sound(s,volume=2):
 	var sound=SOUND_AUTO_DELETE.instance()
 	get_tree().get_root().add_child(sound)
 	sound.global_position=global_position
-	sound.volume_db=volume
-	sound.play_sound(s)
+	sound.play_sound(s, volume)
 
 
 func _on_Tween_tween_all_completed() -> void:
