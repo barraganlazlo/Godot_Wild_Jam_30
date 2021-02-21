@@ -50,4 +50,7 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_Button_pressed() -> void:
+	Global.player_type = Global.og_player_type.duplicate(true)
+	Global.building_types = Global.og_building_types.duplicate(true)
+	Global.level_stats = [0,0,0,0]
 	Global.retry()

@@ -19,7 +19,7 @@ enum PLAYER {
 }
 # [ Damage , Money ]
 onready var player_type: Array = [1, 10, 1.0]
-
+onready var og_player_type: Array = player_type.duplicate(true)
 enum ENEMY {
 	SPD,
 	ANIM_SPD,
@@ -54,6 +54,7 @@ onready var building_types: Dictionary = {
 	"wall":  	[4, 0 , 0, 1],
 	"bomb": 	[2, 1, 10, 3],
 }
+onready var og_building_types: Dictionary = building_types.duplicate(true)
 
 onready var passive_money: int = 1
 
