@@ -17,11 +17,13 @@ _global_script_class_icons={
 
 config/name="HeartDefense"
 run/main_scene="res://Scenes/Gui/Title.tscn"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://scripts/Global.gd"
+Music="*res://Scenes/Music.tscn"
 
 [display]
 
@@ -129,5 +131,6 @@ destruct={
 quality/2d/use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.13, 0.13, 0.13, 1 )
 environment/default_environment="res://default_env.tres"
