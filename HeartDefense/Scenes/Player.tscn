@@ -42,3 +42,4 @@ position = Vector2( 7, -4.5 )
 is_active = false
 
 [node name="Bow" parent="AnimatedSprite/Weapons" instance=ExtResource( 3 )]
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]

@@ -14,7 +14,7 @@ func init(drop_speed: float, new_type):
 	$Tween.interpolate_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.1), 
 		Color(1.0, 1.0, 1.0, 0.7), drop_speed, t_trans, t_ease)
 	$Tween.start()
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(drop_speed), "timeout")
 	play_sound(landing_sound_effects)
 	
 func play_sound(s,volume=2):
@@ -27,6 +27,10 @@ func play_sound(s,volume=2):
 func _on_Tween_tween_all_completed() -> void:
 	var main: Node2D = get_tree().get_nodes_in_group("main").front()
 	var type_data = Global.enemy_types[type]
+	var inst = load("res://Scenes/Particles/DustBomb.tscn")
+	var particle = inst.instance()
+	main.ysort.add_child(particle)
+	particle.global_position = global_position + Vector2(0,10)
 	main.create_enemy(global_position, type)
 	queue_free()
 

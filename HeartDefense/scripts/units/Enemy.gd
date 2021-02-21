@@ -18,7 +18,7 @@ const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25, new_hp: int = 10):
 	.init(sprite_string, spd, anim_spd, new_hp)
 	destination = find_nearest()
-	sleep(0.4)
+	sleep(0.75)
 	if type == "orc_shaman":
 		$Special.wait_time = 5.0
 		$Special.start()
@@ -106,18 +106,18 @@ func _on_Special_timeout() -> void:
 	if type == "orc_shaman":
 		sleep(1.5)
 		var pos: Vector2 = global_position
-		var dir: Vector2 = direction * 20
+		var dir: Vector2 = direction * 15
 		pos += dir
-		main.create_enemy(pos, "skelet")		
+		main.create_enemy(pos, "skelet")
 		var magic = PARTICLE_MAGIC.instance()
 		ysort.add_child(magic)
-		magic.global_position = pos
+		magic.global_position = pos + Vector2(0,6)
 	elif type == "big_zombie":
 		sleep(2.0)
 		var pos: Vector2 = global_position
-		var dir: Vector2 = direction * 25
+		var dir: Vector2 = direction * 20
 		pos += dir
 		main.create_enemy(pos, "zombie")
 		var magic = PARTICLE_MAGIC.instance()
 		ysort.add_child(magic)
-		magic.global_position = pos
+		magic.global_position = pos + Vector2(0,6)

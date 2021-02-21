@@ -27,7 +27,7 @@ onready var main = get_tree().get_nodes_in_group("main").front()
 
 func _ready() -> void:
 	add_to_group("Heart_Building")
-	hp = 1
+	hp = 100
 	tween_heart()
 	set_beat_rate(beat_rate)
 

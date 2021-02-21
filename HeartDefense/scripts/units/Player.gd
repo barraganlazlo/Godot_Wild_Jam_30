@@ -1,7 +1,18 @@
 extends "res://scripts/units/Unit.gd"
 
 onready var building_limit: int = 100
-
+onready var frames = animSprite.frames
+var footsteps: Array =[
+	preload("res://Sounds/footstep 1.wav"),
+	preload("res://Sounds/footstep 2.wav"),
+	preload("res://Sounds/footstep 3.wav"),
+	preload("res://Sounds/footstep 4.wav"),
+	preload("res://Sounds/footstep 5.wav"),
+	preload("res://Sounds/footstep 6.wav"),
+	preload("res://Sounds/footstep 7.wav"),
+	preload("res://Sounds/footstep 8.wav")
+]
+const SOUND_AUTO_DELETE:= preload("res://Scenes/SoundAutoDelete.tscn")
 const BUILD_WHEEL :=preload("res://Scenes/Gui/BuildWheel.tscn")
 
 func _ready():
@@ -52,3 +63,17 @@ func select(target_weapon)-> void:
 	weapons[target_weapon].activate()
 	weapons[current_weapon].desactivate()
 	current_weapon=target_weapon
+
+
+func _on_AnimatedSprite_frame_changed() -> void:
+	print("changed")
+	if animSprite.animation != "Run":
+		return
+	
+	if animSprite.frame % 2 == 0:
+		return
+	
+	var audio = SOUND_AUTO_DELETE.instance()
+	add_child(audio)
+	var select_clip = randi() % footsteps.size()
+	audio.play_sound(footsteps[select_clip], -10, -10)
