@@ -5,7 +5,7 @@ onready var damage: int = 1
 onready var ysort = get_tree().get_nodes_in_group("ysort").front()
 const PARTICLE_MAGIC := preload("res://Scenes/Particles/Magic.tscn")
 const COIN:=preload("res://Scenes/Wave/Coin.tscn")
-
+onready var special_num: int = 0
 
 var impact_sounds :=[
 	preload("res://Sounds/Impact 1.wav"),
@@ -20,6 +20,9 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	destination = find_nearest()
 	sleep(0.4)
 	if type == "orc_shaman":
+		$Special.wait_time = 5.0
+		$Special.start()
+	elif type == "big_zombie":
 		$Special.wait_time = 5.0
 		$Special.start()
 
@@ -97,12 +100,24 @@ func play_sound(s,volume=0):
 	sound.play_sound(s, volume)
 
 func _on_Special_timeout() -> void:
+	special_num += 1
+	if special_num > 2:
+		return
 	if type == "orc_shaman":
-		sleep(1.0)
+		sleep(1.5)
+		var pos: Vector2 = global_position
+		var dir: Vector2 = direction * 20
+		pos += dir
+		main.create_enemy(pos, "skelet")		
+		var magic = PARTICLE_MAGIC.instance()
+		ysort.add_child(magic)
+		magic.global_position = pos
+	elif type == "big_zombie":
+		sleep(2.0)
 		var pos: Vector2 = global_position
 		var dir: Vector2 = direction * 25
 		pos += dir
-		main.create_enemy(pos, "skelet")		
+		main.create_enemy(pos, "zombie")
 		var magic = PARTICLE_MAGIC.instance()
 		ysort.add_child(magic)
 		magic.global_position = pos

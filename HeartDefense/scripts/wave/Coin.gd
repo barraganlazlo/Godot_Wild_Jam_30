@@ -65,7 +65,6 @@ func _on_FlashTimer_timeout() -> void:
 
 func _on_Coin_body_entered(body) -> void:
 	Global.update_coins(1)
-	Global.level_stats[Global.STATS.MONEY_COLLECTED] += 1
 	var instance=SOUND_AUTO_DELETE.instance()
 	get_tree().get_root().add_child(instance)
 	instance.global_position=global_position

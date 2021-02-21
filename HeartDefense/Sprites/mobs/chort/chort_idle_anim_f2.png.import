@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chort_run_anim_f1.png-c0f5171004a376c79ddaf4edd34d8999.stex"
+path="res://.import/chort_idle_anim_f2.png-c22a0d5dfdd3d3d0a840e84436bf9081.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/mobs/chort_demon/chort_run_anim_f1.png"
-dest_files=[ "res://.import/chort_run_anim_f1.png-c0f5171004a376c79ddaf4edd34d8999.stex" ]
+source_file="res://Sprites/mobs/chort/chort_idle_anim_f2.png"
+dest_files=[ "res://.import/chort_idle_anim_f2.png-c22a0d5dfdd3d3d0a840e84436bf9081.stex" ]
 
 [params]
 

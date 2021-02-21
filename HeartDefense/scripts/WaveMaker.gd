@@ -117,21 +117,21 @@ func level_5():
 func level_6():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
-	types = [ "zombie", "big_zombie", "skelet"]
+	types = [ "zombie", "big_zombie", "swampy"]
 	spawn_spd = 0.6
 	spawn_duration = 25.0
 	wave_cooldown = 20.0
 
 func level_7():
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
-	types = ["big_zombie", "skelet", "swampy"]
+	types = ["big_zombie", "swampy", "swampy"]
 	spawn_spd = 0.5
 	spawn_duration = 25.0
 	wave_cooldown = 20.0
 
 func level_8():
 	Global.building_types["spear"][Global.BUILDING.COST] += 1
-	types = ["skelet", "swampy", "big_demon"]
+	types = ["big_demon", "swampy", "big_demon"]
 	spawn_spd = 0.4
 	spawn_duration = 25.0
 	wave_cooldown = 25.0

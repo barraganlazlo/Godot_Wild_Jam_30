@@ -32,14 +32,16 @@ enum ENEMY {
 
 onready var enemy_types: Dictionary = {
 	# [ Move spd , Animation spd , Hp , Money_amount, Money_chance, knockback-res]
-	"muddy": 		[25, 0.75, 5, 1, 0.5, 0.7],
-	"goblin": 		[45, 1.00, 4, 1, 0.75, 0.8],
+	"muddy": 		[15, 0.75, 3, 1, 0.5, 0.7],
+	"skelet": 		[35, 1.00, 1, 1, 0.9, 0.9],
+	"goblin": 		[30, 1.00, 2, 1, 0.75, 0.8],
 	"orc_shaman": 	[20, 0.75, 5, 2, 0.5, 0.8],
 	"zombie": 		[25, 0.75, 12, 2, 0.8, 0.6],
 	"big_zombie": 	[15, 0.50, 26, 3, 0.8, 0.2],
-	"skelet": 		[35, 1.00, 6, 1, 0.9, 0.9],
 	"swampy": 		[30, 1.25, 25, 3, 0.5, 0.5],
+	"chort":		[25, 0.75, 12, 2, 0.8, 0.6],
 	"big_demon": 	[125, 1.75, 12, 2, 0.9, 0.1],
+	"necromancer":	[25, 0.75, 12, 2, 0.8, 0.6],
 	"ogre": 		[20, 0.5, 60, 5, 0.25, 0.05],
 }
 
@@ -53,7 +55,7 @@ onready var building_types: Dictionary = {
 	# [ Hp , Damage , proj_spd, cost]
 	"spear": 	[3, 2, 700, 3],
 	"wall":  	[4, 0 , 0, 1],
-	"bomb": 	[2, 1, 10, 3],
+	"bomb": 	[2, 1, 100, 3],
 }
 onready var og_building_types: Dictionary = building_types.duplicate(true)
 
@@ -71,6 +73,8 @@ func passive_income():
 	update_coins(passive_money)
 
 func update_coins(value):
+	if value > 0:
+		level_stats[STATS.MONEY_COLLECTED] += value
 	player_type[PLAYER.MONEY] += value
 	emit_signal("update_coins", value)
 
