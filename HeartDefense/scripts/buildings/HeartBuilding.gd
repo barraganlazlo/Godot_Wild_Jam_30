@@ -48,7 +48,11 @@ func hp_reduced()->void:
 		beat_rate = BEAT_RATE.MEDIUM_FAST
 	else: 
 		beat_rate = BEAT_RATE.FAST
-	
+	$AnimationPlayer.playback_speed = float(beat_rate) / float(BEAT_RATE.SLOW)
+	var inst = load("res://Scenes/Particles/Fire64.tscn")
+	var particle = inst.instance()
+	add_child(particle)
+	particle.init(14)
 	$Invince.wait_time = beat_rate / 60.0
 	$Invince.start()
 	invincible = true

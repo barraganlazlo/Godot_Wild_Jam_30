@@ -182,9 +182,9 @@ __meta__ = {
 }
 
 [node name="VBox" type="VBoxContainer" parent="VBox/Other"]
-margin_left = 79.0
+margin_left = 80.0
 margin_top = 48.0
-margin_right = 559.0
+margin_right = 560.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 480, 0 )
 size_flags_vertical = 3

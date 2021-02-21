@@ -17,9 +17,9 @@ const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
 func _ready() -> void:
 	$CollisionShape2D.disabled = true
 
-func launch(target, spd, dam) -> void:
-	var dir = heart_build_pos.direction_to(target) * 16
-	target_pos = target - dir
+func launch(new_target, spd, dam) -> void:
+	var dir = heart_build_pos.direction_to(new_target) * 16
+	target_pos = new_target - dir
 	distance = global_position.distance_to(target_pos)
 	speed = spd
 	damage = dam
@@ -68,6 +68,7 @@ func set_airborne(_coming_up := true, _distance := 0.0) -> void:
 		tween.interpolate_property(self, "global_position", 
 		global_position, target_pos, 
 		tween_speed_selected, tween_trans, Tween.EASE_OUT)
+# warning-ignore:return_value_discarded
 	tween.start()
 
 func play_sound(s,volume=0):

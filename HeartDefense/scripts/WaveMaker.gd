@@ -9,8 +9,8 @@ onready var cooldown =  $Cooldown
 onready var buyable = $Buyable
 onready var destroyEnemy = $DestroyEnemy
 
-onready var buyable_cost = 2
-onready var buyable_chance = 20.0
+onready var buyable_cost = 4
+onready var buyable_chance: float = 20.0
 
 onready var main = get_parent()
 onready var top_left: =Vector2(64,64)
@@ -50,9 +50,9 @@ func init(wave_num: int = 1):
 	duration.start()
 	wave = wave_num
 	if wave == 4:
-		buyable_chance = 15
+		buyable_chance = 15.0
 	elif wave == 8:
-		buyable_chance = 10
+		buyable_chance = 10.0
 
 
 
@@ -60,7 +60,7 @@ func init_buyable_timer():
 	#Per wave, spawns num of buyables
 	buyable.wait_time = rng.randf_range(buyable_chance/4,buyable_chance)
 	buyable.start()
-	buyable_cost += rng.randi_range(1,4)
+	buyable_cost += rng.randi_range(1,3)
 
 #	"muddy": 		[15, 0.75, 5, 1, 0.2],
 #	"goblin": 		[50, 1.25, 3, 1, 0.3],
@@ -137,13 +137,13 @@ func level_9():
 	Global.building_types["bomb"][Global.BUILDING.COST] += 1
 	Global.building_types["wall"][Global.BUILDING.COST] += 1
 	types = ["necromancer", "big_demon", "chort"]
-	spawn_spd = 0.6
+	spawn_spd = 0.5
 	spawn_duration = 35.0
 	wave_cooldown = 30.0
 
 func level_10():
 	types = ["ogre", "necromancer", "big_demon", "chort"]
-	spawn_spd = 0.8
+	spawn_spd = 0.7
 	spawn_duration = 50.0
 	wave_cooldown = 10.0
 

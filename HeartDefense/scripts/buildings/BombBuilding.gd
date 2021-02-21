@@ -27,7 +27,8 @@ func anticipate_heart_beat() -> void:
 func heart_beat() -> void:
 	if !nearest_targets.empty():
 		attach.animation = "Fire"
-		create_proj(nearest_targets.front().global_position)
+		var i = randi() % nearest_targets.size()
+		create_proj(nearest_targets[i].global_position)
 	else:
 		attach.animation = "Idle"
 
