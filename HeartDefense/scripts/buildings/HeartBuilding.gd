@@ -27,7 +27,7 @@ onready var main = get_tree().get_nodes_in_group("main").front()
 
 func _ready() -> void:
 	add_to_group("Heart_Building")
-	hp = 10000000
+	hp = 1000
 	tween_heart()
 	set_beat_rate(beat_rate)
 
@@ -38,8 +38,9 @@ func hp_reduced()->void:
 func hp_depleted()->void:
 	if main.game_over:
 		return
+	$LoseSoundPlayer.play()
 	main.game_lose()
-	hp = 10000
+	hp = 1000
 	collision_layer = 0
 	set_animation()
 	main.game_over = true

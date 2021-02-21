@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/building_heart.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/heart-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://scripts/buildings/HeartBuilding.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/heartbeat.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Explosion 1.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 24 )
@@ -100,4 +102,11 @@ anims/Beat = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="HeartBeatPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="LoseSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

@@ -12,6 +12,12 @@ onready var cost: int = 1
 onready var tween_up: bool = true
 onready var flashing: bool = false
 
+
+var power_up_sound_effect :=preload("res://Sounds/power_up.wav")
+
+const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
+
+
 func init(new_type, new_cost) -> void:
 	type = new_type
 	cost = new_cost
@@ -52,6 +58,13 @@ func _on_Buyable_body_entered(body: Node) -> void:
 		magic.global_position = global_position
 		queue_free()
 		give_reward()
+		play_sound(power_up_sound_effect)
+
+func play_sound(s):
+	var sound=SOUND_AUTO_DELETE.instance()
+	get_tree().get_root().add_child(sound)
+	sound.global_position=global_position
+	sound.play_sound(s)
 
 func give_reward():
 	if (type == UPGRADE.ARROW_DAMAGE):

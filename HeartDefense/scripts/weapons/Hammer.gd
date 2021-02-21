@@ -19,6 +19,11 @@ const BUILD_RANGE := 100
 
 var last_target_map_pos:=Vector2(-1,-1)
 
+var hammer_sound_effects:=[
+	preload("res://Sounds/Hammer 1.wav"),
+	preload("res://Sounds/Hammer 2.wav")
+]
+
 
 #BUILDINGS
 enum {WALL, SPEAR, BOMB, NUMBER_BUILDING_TYPES}
@@ -137,7 +142,7 @@ func build(target_map_pos:Vector2)->void :
 		Global.update_coins(0)
 		return
 	Global.update_coins(-cost)
-	
+	play_build_sound()
 	match current_building:
 		WALL:
 			built_walls.add_tile(target_map_pos,0)
@@ -170,6 +175,10 @@ func desactivate()->void:
 	is_active=false
 	visible=false
 	preview.visible=false
+
+func play_build_sound():
+	$AudioStreamPlayer2D.stream=hammer_sound_effects[randi()%hammer_sound_effects.size()]
+	$AudioStreamPlayer2D.play()
 
 
 func _on_Timer_timeout() -> void:

@@ -6,6 +6,16 @@ onready var ysort = get_tree().get_nodes_in_group("ysort").front()
 const PARTICLE_MAGIC := preload("res://Scenes/Particles/Magic.tscn")
 const COIN:=preload("res://Scenes/Wave/Coin.tscn")
 
+var landing_sound_effects :=preload("res://Sounds/tomb.wav")
+
+var impact_sounds :=[
+	preload("res://Sounds/Impact 1.wav"),
+	preload("res://Sounds/Impact 2.wav")
+]
+const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
+
+
+
 func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 2.25, new_hp: int = 10):
 	.init(sprite_string, spd, anim_spd, new_hp)
 	destination = find_nearest()
@@ -72,13 +82,20 @@ func _on_HurtBox_body_entered(body) -> void:
 	var knockback_force = 10.0
 	var knockback = global_position.direction_to(body.global_position) * knockback_force
 	var old_hp = hp
+	play_sound(impact_sounds[randi()%impact_sounds.size()])
 	body.take_damage(old_hp, knockback)
 	set_hp(old_hp - body.hp)
 
 
 func _on_WakeUp_timeout() -> void:
 	set_physics_process(true)
+	play_sound(landing_sound_effects)
 
+func play_sound(s):
+	var sound=SOUND_AUTO_DELETE.instance()
+	get_tree().get_root().add_child(sound)
+	sound.global_position=global_position
+	sound.play_sound(s)
 
 func _on_Special_timeout() -> void:
 	if type == "orc_shaman":

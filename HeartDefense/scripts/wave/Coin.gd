@@ -66,7 +66,8 @@ func _on_FlashTimer_timeout() -> void:
 func _on_Coin_body_entered(body) -> void:
 	Global.update_coins(1)
 	var instance=SOUND_AUTO_DELETE.instance()
-	instance.global_position=global_position
 	get_tree().get_root().add_child(instance)
+	instance.global_position=global_position
 	instance.play_sound(pick_up_sound)
+	instance.volume_db=-5
 	queue_free()

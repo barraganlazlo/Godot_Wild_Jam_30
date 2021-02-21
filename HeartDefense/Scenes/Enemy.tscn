@@ -35,6 +35,7 @@ collision_mask = 8
 shape = SubResource( 3 )
 
 [node name="WakeUp" type="Timer" parent="."]
+one_shot = true
 
 [node name="Special" type="Timer" parent="."]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
