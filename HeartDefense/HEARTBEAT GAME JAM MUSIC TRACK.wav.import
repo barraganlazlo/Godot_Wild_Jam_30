@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/HEARTBEAT GAME JAM MUSIC TRACK.wav-72a7d0b8d73b7569eeac18a0293e8378.sample"
+
+[deps]
+
+source_file="res://HEARTBEAT GAME JAM MUSIC TRACK.wav"
+dest_files=[ "res://.import/HEARTBEAT GAME JAM MUSIC TRACK.wav-72a7d0b8d73b7569eeac18a0293e8378.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
