@@ -7,10 +7,9 @@ const PARTICLE_MAGIC := preload("res://Scenes/Particles/Magic.tscn")
 const COIN:=preload("res://Scenes/Wave/Coin.tscn")
 onready var special_num: int = 0
 
-var impact_sounds :=[
-	preload("res://Sounds/Impact 1.wav"),
-	preload("res://Sounds/Impact 2.wav")
-]
+var impact_sounds :=preload("res://Sounds/Impact 1.wav")
+
+
 const SOUND_AUTO_DELETE = preload("res://Scenes/SoundAutoDelete.tscn")
 
 
@@ -84,7 +83,7 @@ func _on_HurtBox_body_entered(body) -> void:
 	var knockback_force = 10.0
 	var knockback = global_position.direction_to(body.global_position) * knockback_force
 	var old_hp = hp
-	play_sound(impact_sounds[randi()%impact_sounds.size()],-5)
+	play_sound(impact_sounds,-5)
 	body.take_damage(old_hp, knockback)
 	set_hp(0)
 
