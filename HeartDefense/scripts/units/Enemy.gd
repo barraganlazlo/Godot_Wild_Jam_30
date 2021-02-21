@@ -20,7 +20,7 @@ func init(sprite_string: String = "ogre", spd: float = 100.0, anim_spd: float = 
 	destination = find_nearest()
 	sleep(0.75)
 	if type == "orc_shaman":
-		$Special.wait_time = 5.0
+		$Special.wait_time = 3.0
 		$Special.start()
 	elif type == "big_zombie":
 		$Special.wait_time = 5.0
