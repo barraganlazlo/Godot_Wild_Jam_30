@@ -2,6 +2,12 @@ extends Node
 
 signal update_coins(value)
 
+
+var master_volume=0
+var music_volume=0
+var sound_effects_volume=0
+
+
 onready var level_stats: Array = [0,0,0,0]
 
 enum STATS {

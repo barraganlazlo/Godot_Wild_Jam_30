@@ -42,10 +42,10 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.9, 7.9 )
 
-[sub_resource type="TileSet" id=9]
+[sub_resource type="TileSet" id=4]
 0/name = "full_wall_spritesheet.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, -16 )
@@ -61,14 +61,14 @@ extents = Vector2( 7.9, 7.9 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 14 )
 shader_param/center = null
 shader_param/force = 0.0
 shader_param/size = 1.5
 shader_param/thickness = null
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=6]
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/force")
@@ -95,7 +95,7 @@ tracks/1/keys = {
 "values": [ 0.03, 1.5 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 resource_name = "default"
 length = 0.001
 tracks/0/type = "value"
@@ -159,7 +159,9 @@ collision_mask = 0
 format = 1
 script = ExtResource( 12 )
 
-[node name="PathFindingMap" type="TileMap" parent="YSort"]
+[node name="Navigation2D" type="Navigation2D" parent="YSort"]
+
+[node name="PathFindingMap" type="TileMap" parent="YSort/Navigation2D"]
 visible = false
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
@@ -226,11 +228,11 @@ collision_layer = 0
 collision_mask = 2147483662
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Preview/PreviewCollision"]
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="PreviewWalls" type="TileMap" parent="YSort/Preview"]
 z_index = 2
-tile_set = SubResource( 9 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 collision_layer = 0
@@ -270,7 +272,7 @@ position = Vector2( 269, 103 )
 script = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="Shockwave"]
-material = SubResource( 10 )
+material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
@@ -286,8 +288,8 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
 autoplay = "default"
 method_call_mode = 1
-anims/Pulse = SubResource( 11 )
-anims/default = SubResource( 12 )
+anims/Pulse = SubResource( 6 )
+anims/default = SubResource( 7 )
 
 [node name="Tween" type="Tween" parent="."]
 playback_process_mode = 0

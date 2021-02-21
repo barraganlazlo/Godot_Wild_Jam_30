@@ -12,6 +12,8 @@ onready var green_nine = $Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNi
 onready var label = $Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNine/Label
 onready var fading: bool = false
 
+onready var audio_pannel=$Camera2D/VBoxContainer/AudioPannel
+
 func _ready() -> void:
 	for i in layers.size():
 		layers_pos[i] = layers[i].global_position
@@ -29,7 +31,7 @@ func _on_TextureButton_button_down() -> void:
 func _on_TextureButton_button_up() -> void:
 	green_nine.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
 	if !fading:
-		#$AudioStreamPlayer.play()
+		$AudioStreamPlayer.play()
 		fading = true
 		$Timer.wait_time = 0.2
 		$Timer.start()
@@ -45,3 +47,21 @@ func _on_Timer_timeout() -> void:
 func _on_Tween_tween_all_completed() -> void:
 	print("going to main")
 	Global.go_to_scene("res://Scenes/main.tscn")
+
+
+func _on_Master_volume_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),value)
+
+func _on_Music_volume_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),value)
+
+func _on_Sound_effects_volume_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sound_effects"),value)
+
+
+func _on_Volume_OK_pressed():
+	audio_pannel.visible=false
+
+
+func _on_Audio_button_up():
+	audio_pannel.visible=true

@@ -75,4 +75,5 @@ anims/Idle = SubResource( 2 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "sound_effects"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

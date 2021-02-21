@@ -120,11 +120,14 @@ anims/Idle = SubResource( 3 )
 stream = ExtResource( 4 )
 volume_db = 10.0
 autoplay = true
+bus = "sound_effects"
 
 [node name="LoseSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+bus = "sound_effects"
 
 [node name="HeartBeatWavePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
 volume_db = 5.0
+bus = "sound_effects"
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

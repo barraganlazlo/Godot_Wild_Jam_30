@@ -64,8 +64,70 @@ mouse_filter = 2
 
 [node name="Buffer" type="Label" parent="Camera2D/VBoxContainer/VBoxContainer"]
 margin_right = 180.0
-margin_bottom = 288.0
+margin_bottom = 252.0
 size_flags_vertical = 7
+
+[node name="AudioSettings" type="NinePatchRect" parent="Camera2D/VBoxContainer/VBoxContainer"]
+margin_top = 256.0
+margin_right = 180.0
+margin_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 32 )
+rect_pivot_offset = Vector2( 90, 16 )
+texture = ExtResource( 7 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+script = ExtResource( 11 )
+
+[node name="GreenNine" type="NinePatchRect" parent="Camera2D/VBoxContainer/VBoxContainer/AudioSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 0, 13 )
+texture = ExtResource( 8 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera2D/VBoxContainer/VBoxContainer/AudioSettings/GreenNine"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 1, 0.898039, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+text = "Audio Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="Camera2D/VBoxContainer/VBoxContainer/AudioSettings/GreenNine"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut_in_tooltip = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BrownNine" type="NinePatchRect" parent="Camera2D/VBoxContainer/VBoxContainer"]
 margin_top = 292.0
@@ -135,6 +197,196 @@ margin_right = 180.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 0, 32 )
 
+[node name="AudioPannel" type="VBoxContainer" parent="Camera2D/VBoxContainer"]
+visible = false
+margin_left = 220.0
+margin_right = 420.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 200, 360 )
+
+[node name="Buffer" type="Label" parent="Camera2D/VBoxContainer/AudioPannel"]
+margin_right = 200.0
+margin_bottom = 14.0
+
+[node name="Audio Settings pannel" type="NinePatchRect" parent="Camera2D/VBoxContainer/AudioPannel"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 342.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 7 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel"]
+margin_left = 15.0
+margin_top = 20.0
+margin_right = 185.0
+margin_bottom = 40.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer"]
+margin_right = 170.0
+margin_bottom = 14.0
+text = "Audio settings"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 170.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master Label" type="Label" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 64.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 64, 0 )
+text = "Master"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 170.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -36.0
+max_value = 0.0
+step = 0.5
+value = -2.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer"]
+margin_top = 70.0
+margin_right = 170.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master Label" type="Label" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 64.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 64, 0 )
+text = "Music"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer2"]
+margin_left = 68.0
+margin_right = 170.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -36.0
+max_value = 0.0
+step = 0.5
+value = -2.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer"]
+margin_top = 106.0
+margin_right = 170.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master Label" type="Label" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 63.0
+margin_bottom = 15.0
+text = "Sound effects"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer3"]
+margin_left = 67.0
+margin_right = 170.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -36.0
+max_value = 0.0
+step = 0.5
+value = -2.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ok" type="NinePatchRect" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer"]
+margin_top = 142.0
+margin_right = 170.0
+margin_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 30, 20 )
+rect_pivot_offset = Vector2( 0, 13 )
+texture = ExtResource( 8 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 1, 0.898039, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+text = "Ok"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut_in_tooltip = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buffer2" type="Label" parent="Camera2D/VBoxContainer/AudioPannel"]
+margin_top = 346.0
+margin_right = 200.0
+margin_bottom = 360.0
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -142,10 +394,10 @@ one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = -41.0
-margin_top = -23.0
-margin_right = 742.0
-margin_bottom = 414.0
+margin_left = -41.5799
+margin_top = -22.2555
+margin_right = 741.42
+margin_bottom = 414.744
 mouse_filter = 2
 color = Color( 0.105882, 0.0941176, 0.105882, 1 )
 __meta__ = {
@@ -155,11 +407,22 @@ __meta__ = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -5.0
+bus = "sound_effects"
+[connection signal="mouse_entered" from="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" to="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" method="_on_BrownNine_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" to="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" method="_on_BrownNine_mouse_exited"]
+[connection signal="button_up" from="Camera2D/VBoxContainer/VBoxContainer/AudioSettings/GreenNine/TextureButton" to="." method="_on_Audio_button_up"]
+[connection signal="mouse_entered" from="Camera2D/VBoxContainer/VBoxContainer/AudioSettings/GreenNine/TextureButton" to="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/VBoxContainer/VBoxContainer/AudioSettings/GreenNine/TextureButton" to="Camera2D/VBoxContainer/VBoxContainer/AudioSettings" method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_entered" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine" to="Camera2D/VBoxContainer/VBoxContainer/BrownNine" method="_on_BrownNine_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine" to="Camera2D/VBoxContainer/VBoxContainer/BrownNine" method="_on_BrownNine_mouse_exited"]
 [connection signal="button_down" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNine/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="button_up" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNine/TextureButton" to="." method="_on_TextureButton_button_up"]
 [connection signal="mouse_entered" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNine/TextureButton" to="Camera2D/VBoxContainer/VBoxContainer/BrownNine" method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/VBoxContainer/VBoxContainer/BrownNine/GreenNine/TextureButton" to="Camera2D/VBoxContainer/VBoxContainer/BrownNine" method="_on_TextureButton_mouse_exited"]
+[connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_Master_volume_changed"]
+[connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_Music_volume_changed"]
+[connection signal="value_changed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/HBoxContainer3/HSlider" to="." method="_on_Sound_effects_volume_changed"]
+[connection signal="button_down" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok/TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="pressed" from="Camera2D/VBoxContainer/AudioPannel/Audio Settings pannel/VBoxContainer/Ok/TextureButton" to="." method="_on_Volume_OK_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
